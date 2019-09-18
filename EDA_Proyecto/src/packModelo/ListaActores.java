@@ -17,13 +17,13 @@ public class ListaActores {
 		
 	}
 	
-	public boolean buscarActor(Actor pActor) {
+	public boolean buscarActor(String pActor) {
 		
 		boolean enc = false;
 		Iterator<Actor> it = listaActores.iterator();
 		while(listaActores != null && it.hasNext() && enc == false) {
 			Actor actor = it.next();
-			if(pActor.getNombreActor() == actor.getNombreActor()) {
+			if(pActor == actor.getNombreActor()) {
 				enc = true;
 			}
 		}
