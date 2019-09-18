@@ -22,15 +22,16 @@ public class cargarFicheros {
 	
 	public void cargarFichero() {
 		
+		//1.CARG
 		try {
 			
 			BufferedReader bf = new BufferedReader(new FileReader("src/packDatos/FilmsActors20162017.txt"));
 			String line = "";
 			line = bf.readLine();
 			while (line != null) {
+				System.out.println(line);
 				if(line.trim().length() == 0)
 					continue;
-				System.out.println(line);
 				line = bf.readLine();
 			}
 			bf.close();
