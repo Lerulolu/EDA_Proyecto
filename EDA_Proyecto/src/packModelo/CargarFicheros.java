@@ -3,18 +3,18 @@ package packModelo;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-public class cargarFicheros {
+public class CargarFicheros {
 	
-	private static cargarFicheros miCargarFicheros;
+	private static CargarFicheros miCargarFicheros;
 	
-	private cargarFicheros() {
+	private CargarFicheros() {
 		
 	}
 	
-	public static cargarFicheros getCargarFicheros() {
+	public static CargarFicheros getCargarFicheros() {
 		
 		if(miCargarFicheros == null) {
-			miCargarFicheros = new cargarFicheros();
+			miCargarFicheros = new CargarFicheros();
 		}
 		return miCargarFicheros;
 		
