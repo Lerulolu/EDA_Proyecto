@@ -1,68 +1,56 @@
 package packModelo;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
 public class ListaActores {
 	
-	private ArrayList<Actor> listaActores;
-	private static ListaActores miListaActores;
+	ArrayList<String> listaActores;
 	
-	private ListaActores() {
-		listaActores = new ArrayList<Actor>();
+	public ListaActores() {
+		listaActores = new ArrayList<String>();
 	}
 	
-	public static ListaActores getListaActores() {
-		if(miListaActores == null) {
-			miListaActores = new ListaActores();
-		}
-		return miListaActores;
+	public void añadirNombreActor(String nombre) {
+		listaActores.add(nombre);
 	}
 	
-	public ListaPeliculas obtenerPeliculasDeActor(Actor pActor) {
-		
-		return null;
-		
+	public void añadirApellidoActor(String apellido) {
+		listaActores.add(apellido);
 	}
 	
-	public boolean buscarActor(String pActor) {
-		
-		boolean enc = false;
-		Iterator<Actor> it = listaActores.iterator();
-		while(listaActores != null && it.hasNext() && enc == false) {
-			Actor actor = it.next();
-			if(pActor == actor.getNombreActor()) {
+	private Iterator<String> getIterador(){
+		return listaActores.iterator();
+	}
+	
+	public void imprimirLista(ListaActores pLista) {
+		Iterator<String> it = pLista.getIterador();
+		while (it.hasNext())
+			System.out.println(it.next());
+	}
+	
+	
+	public String obtenerNombreActor(String pActor) {
+		Iterator<String> it = listaActores.iterator();
+		String actor = null;
+		Boolean enc = false;
+		while (it.hasNext() && !enc) {
+			actor = it.next();
+			if(actor == pActor) {
 				enc = true;
 			}
 		}
-		return enc;
-	}
-
-	public void obtenerListaActores() {
-		
-		try {
-			
-			BufferedReader bf = new BufferedReader(new FileReader("src/packDatos/FilmsActors20162017.txt"));
-			String line = "";
-			line = bf.readLine();
-			while (line != null) {
-				line.split("");
-				if(line.trim().length() == 0)
-					continue;
-				String[] parts = line.split(" ---> ");
-				String nombre = parts[0];
-				//ACABAR
-				
-				
-				
-				
-			}
-			bf.close();
-		}catch (Exception e) {
-			System.out.println("ERROR!");
+		if(enc) {
+			return pActor;
 		}
-		
+		else {
+			return null;
+		}
 	}
 }
+	
+

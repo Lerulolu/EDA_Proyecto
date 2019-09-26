@@ -1,13 +1,14 @@
 package packPruebas;
 
-import packModelo.CargarFicheros;
+
+import packModelo.ColeccionActores;
 import packModelo.ListaActores;
 
 public class main {
 
 	public static void main(String[] args)  {
 		System.out.println("EMPIEZA EL PROGRAMA");
-		ListaActores.getListaActores().obtenerListaActores();
+		ColeccionActores.getColeccionActores().cargarActores();
 		System.out.println("ACABADO");
 
 	}

@@ -6,7 +6,7 @@ public class Actor {
 	private String nombreActor;
 	private String apellidoActor;
 	
-	private Actor(String pNombreActor, String pApellidoActor) {
+	public Actor(String pNombreActor, String pApellidoActor) {
 		pNombreActor = nombreActor;
 		pApellidoActor = apellidoActor;
 	}
@@ -19,5 +19,5 @@ public class Actor {
 		return apellidoActor;
 	}
 	
-
+	
 }
