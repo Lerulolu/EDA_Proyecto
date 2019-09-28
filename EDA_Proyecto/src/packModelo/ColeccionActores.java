@@ -31,13 +31,14 @@ public class ColeccionActores {
 			String linea = buffer.readLine();
 			System.out.println("CARGANDO LOS ACTORES");
 			while(!linea.isEmpty()) {
-				String[] partes = linea.split("--->");
+				String[] partes = linea.split(" ---> ");
 				String apellido = partes[0];
 				String nombre = partes[1];
 				partes = linea.split("&&&");
 				listaActores.añadirApellidoActor(apellido);
 				
 				linea = buffer.readLine();
+	
 			}
 			buffer.close();
 		}catch (Exception e) {
