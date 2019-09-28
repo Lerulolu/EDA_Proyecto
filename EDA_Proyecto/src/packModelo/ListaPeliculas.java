@@ -42,12 +42,5 @@ public class ListaPeliculas {
 		}
 	}
 	
-	public void imprimirListaPelis() {
-		
-		for (int i = 0; i == i+1; listaPeliculas.size()) {
-			System.out.println("PELI"+listaPeliculas.get(i).toString());
-		}
-	
-	}
 
 }
