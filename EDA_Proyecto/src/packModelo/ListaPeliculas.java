@@ -4,22 +4,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ListaPeliculas {
 	
 	private ArrayList<String> listaPeliculas;
-	private static ListaPeliculas miListaPeliculas;
+	private ListaActores listaActores;
 	
-	private ListaPeliculas() {
+	public ListaPeliculas() {
+		
 		listaPeliculas = new ArrayList<String>();
-	}
-	
-	public static ListaPeliculas getListaPeliculas() {
-		if(miListaPeliculas == null) {
-			miListaPeliculas = new ListaPeliculas();
-		}
-		return miListaPeliculas;
+		listaActores = new ListaActores();
 	}
 	
 	public void cargarPeliculas() {
@@ -42,5 +36,21 @@ public class ListaPeliculas {
 		}
 	}
 	
+	public ListaPeliculas obtenerPeliculasDeActor(Actor pActor) {
+		
+		ListaPeliculas lista = new ListaPeliculas();
+		cargarPeliculas();
+		for(int i = 0; i < listaPeliculas.size(); i++) {
+			
+			if(listaActores.equals(pActor)) {
+				lista.anadirPelicula(listaPeliculas.get(i).toString());
+			}
+		}
+		return lista;
+	}
+	
+	public void anadirPelicula(String pPeli) {
+		listaPeliculas.add(pPeli);
+	}
 
 }

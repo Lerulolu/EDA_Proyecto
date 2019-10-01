@@ -3,24 +3,25 @@ package packModelo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.HashMap;
 
 public class ColeccionActores {
 	
+	private ListaActores listaActores;
+	private ListaPeliculas listaPelis;
 	private static ColeccionActores miColeccionActores;
 	
-	private ListaActores listaActores;
-	
-	private ColeccionActores() {
-		listaActores = new ListaActores();
-	}
-	
-	public static ColeccionActores getColeccionActores() {
+	public static ColeccionActores getMiColeccionActores() {
 		if(miColeccionActores == null) {
 			miColeccionActores = new ColeccionActores();
 		}
 		return miColeccionActores;
 	}
+	
+	private ColeccionActores() {
+		listaActores = new ListaActores();
+		listaPelis = new ListaPeliculas();
+	}
+	
 	
 	public void cargarActores() {
 		
@@ -31,18 +32,17 @@ public class ColeccionActores {
 			String linea = buffer.readLine();
 			System.out.println("CARGANDO LOS ACTORES");
 			while(!linea.isEmpty()) {
-				String[] partes = linea.split(" ---> ");
-				String apellido = partes[0];
-				String nombre = partes[1];
-				partes = linea.split("&&&");
-				listaActores.añadirApellidoActor(apellido);
-				
-				linea = buffer.readLine();
-	
+				String[] linea2 = linea.split("--->");
+				listaPelis.anadirPelicula(linea2.toString());
+				linea2 = linea.split("&&&");
+				for (int i = 0; i < linea.length(); i++) {
+					listaActores.añadirActor(linea2.toString());
+					System.out.println(linea2[i].toString());
+				}
 			}
 			buffer.close();
 		}catch (Exception e) {
-			System.out.println("Ha habido un problema al cargar los datos");
+			System.err.println("PROBLEM!");
 		}
 	}
 

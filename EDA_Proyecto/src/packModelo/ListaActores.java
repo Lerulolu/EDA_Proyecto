@@ -9,19 +9,18 @@ import java.util.Iterator;
 
 public class ListaActores {
 	
-	ArrayList<String> listaActores;
+	private ArrayList<String> listaActores;
+	private ListaPeliculas listaPeliculas;
 	
 	public ListaActores() {
 		listaActores = new ArrayList<String>();
 	}
 	
-	public void añadirNombreActor(String nombre) {
+	public void añadirActor(String nombre) {
 		listaActores.add(nombre);
 	}
 	
-	public void añadirApellidoActor(String apellido) {
-		listaActores.add(apellido);
-	}
+
 	
 	private Iterator<String> getIterador(){
 		return listaActores.iterator();
@@ -51,6 +50,7 @@ public class ListaActores {
 			return null;
 		}
 	}
+	
 }
 	
 

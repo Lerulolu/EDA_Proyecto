@@ -9,8 +9,7 @@ public class main {
 
 	public static void main(String[] args)  {
 		System.out.println("EMPIEZA EL PROGRAMA");
-		ListaPeliculas.getListaPeliculas().cargarPeliculas();
-		ListaPeliculas.getListaPeliculas().imprimirListaPelis();
+		ColeccionActores.getMiColeccionActores().cargarActores();
 		System.out.println("ACABADO");
 
 	}
