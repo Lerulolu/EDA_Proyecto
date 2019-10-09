@@ -5,12 +5,13 @@ public class Actor {
 	
 	private String nombreActor;
 	private String apellidoActor;
+	private ListaPeliculas lPelis;
 	
 	public Actor(String pNombreActor, String pApellidoActor) {
 		pNombreActor = nombreActor;
 		pApellidoActor = apellidoActor;
 	}
-	
+		
 	public String getNombreActor() {
 		return nombreActor;
 	}
@@ -19,5 +20,10 @@ public class Actor {
 		return apellidoActor;
 	}
 	
+	public ListaPeliculas obtenerPelis() {
+		
+		return null;
+		
+	}
 	
 }
