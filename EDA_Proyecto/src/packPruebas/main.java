@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import packModelo.Actor;
+import packModelo.ColeccionActores;
 import packModelo.ColeccionPeliculas;
 import packModelo.Stopwatch;
 
@@ -36,10 +38,15 @@ public class main {
                     case 1:
                         System.out.println("Buscar Pelicula");
                         ColeccionPeliculas.getMiColeccionPeliculas().cargarPeliculas();
-                		ColeccionPeliculas.getMiColeccionPeliculas().buscarPelicula("Eager to Die ");
+                		ColeccionPeliculas.getMiColeccionPeliculas().buscarPelicula("Eager to Die");
+                		System.out.println("Tiempo utilizado para la busqueda de la Pelicula: "+reloj.elapsedTime());
                         break;
                     case 2:
-                        System.out.println("Has seleccionado la opcion 2");
+                        System.out.println("Buscar Actor");
+                        ColeccionActores.getMiColeccionActores().cargarActores();
+                        Actor a = ColeccionActores.getMiColeccionActores().buscarActor("Devon, Tony");
+                        a.imprimirPelisActor();
+                        System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
                         break;
                     case 3:
                         System.out.println("Has seleccionado la opcion 3");
@@ -57,7 +64,7 @@ public class main {
         }		
 
 
-		System.out.println("Tiempo utilizado para la inserción de la Web: "+reloj.elapsedTime());
+		
 	}
 
 }

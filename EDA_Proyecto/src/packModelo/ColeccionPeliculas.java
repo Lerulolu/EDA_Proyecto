@@ -19,7 +19,7 @@ public class ColeccionPeliculas {
 		listaPeliculas = new ListaPeliculas();
 	}
 	
-	public Boolean buscarPelicula(String pTitulo) throws FileNotFoundException {
+	public Pelicula buscarPelicula(String pTitulo) throws FileNotFoundException {
 		return listaPeliculas.buscarPelicula(pTitulo);
 	}
 	

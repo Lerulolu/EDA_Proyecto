@@ -20,8 +20,8 @@ public class ColeccionActores {
 		listaActores.cargarActores();
 	}
 	
-	public Actor buscarActor(String pNombre, String pApellido) {
-		return listaActores.buscarActor(pNombre, pApellido);
+	public Actor buscarActor(String pNombre) {
+		return listaActores.buscarActor(pNombre);
 	}
 
 }

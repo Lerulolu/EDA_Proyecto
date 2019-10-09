@@ -1,29 +1,29 @@
 package packModelo;
 
+import java.util.Iterator;
 
 public class Actor {
 	
-	private String nombreActor;
-	private String apellidoActor;
+	private String nombre;
 	private ListaPeliculas lPelis;
 	
-	public Actor(String pNombreActor, String pApellidoActor) {
-		pNombreActor = nombreActor;
-		pApellidoActor = apellidoActor;
+	public Actor(String pNombreActor) {
+		nombre = pNombreActor;
+		lPelis = new ListaPeliculas();
 	}
 		
 	public String getNombreActor() {
-		return nombreActor;
+		return nombre;
+	}
+
+	public void añadirPeli(Pelicula pPeli) {
+		lPelis.anadirPelicula(pPeli);
 	}
 	
-	public String getApellidoActor() {
-		return apellidoActor;
+	public void imprimirPelisActor() {
+		lPelis.imprimirPeliculas();
+		System.out.println(lPelis.getSize());
 	}
-	
-	public ListaPeliculas obtenerPelis() {
 		
-		return null;
-		
-	}
 	
 }

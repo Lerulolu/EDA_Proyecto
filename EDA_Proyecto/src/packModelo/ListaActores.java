@@ -3,8 +3,12 @@ package packModelo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
+
+import sun.net.www.content.text.plain;
 
 
 public class ListaActores {
@@ -14,31 +18,27 @@ public class ListaActores {
 	public ListaActores() {
 		listaActores = new ArrayList<Actor>();
 	}
+	
 		
-	public ListaPeliculas obtenerPelisActor(Actor pActor) {
+	public ListaPeliculas obtenerPelisActor(String pNombre) {
+		Actor actor = buscarActor(pNombre);
 		
 		return null;
 		
 	}
 	
-	public Actor buscarActor(String pNombre, String pApellido) {
+	public Actor buscarActor(String pNombre) {
 		
 		Iterator<Actor> it = listaActores.iterator();
 		Actor actor = null;
 		Boolean encontrado = false;
 		while (it.hasNext() && !encontrado) {
 			actor = it.next();
-			if(pNombre.equals(actor.getNombreActor()) && pApellido.equals(actor.getApellidoActor())) {
+			if(pNombre.equals(actor.getNombreActor())) {
 				encontrado = true;
 			}
 		}
-		if(encontrado) {
-			return actor;
-		}
-		else {
-			return null;
-		}
-		
+			return actor;		
 	}
 	
 	public void borrarActor(Actor pActor) {
@@ -58,45 +58,69 @@ public class ListaActores {
 	}
 	
 	public void cargarActores() {
-
+		try {
+			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
+			BufferedReader buffer = new BufferedReader(fichero);
+			String linea = buffer.readLine();
+			Actor actor = null;
+			while(linea != null) {
+				String[] linea2 = linea.split(" ---> ");
+				Pelicula peli = new Pelicula(linea2[0].toString(),0);
+				String[] listaA = linea2[1].split(" &&& ");
+				for (int i = 0; i < listaA.length; i++) {
+					String nombre = listaA[i].toString();
+					actor = buscarActor(nombre);
+					if(actor == null) {
+						actor = new Actor(nombre);
+						listaActores.add(actor);
+					}
+				}
+				actor.añadirPeli(peli);
+				linea = buffer.readLine();		
+			}	
+			buffer.close();
+		}
+		catch (IOException e) {
+			System.err.println(e.getLocalizedMessage());
+		}
+	
+	
+	}
+	
+	/*public void cargarActoresComas() {
+		
 		try {
 			
 			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
 			BufferedReader buffer = new BufferedReader(fichero);
 			String linea = buffer.readLine();
-			System.out.println("CARGANDO LOS ACTORES");
-			while(!linea.isEmpty()) {
-				
-				//OBTENEMOS LA LISTA DE ACTORES
-				String[] linea2 = linea.split("--->");
-				String listaAct = linea2[1];
-				String[] actor = listaAct.split("&&&");
-				for (int i = 0; i<listaAct.length(); i++) {
-					//SEPARAMOS ACTORES EN NOMBRE Y APELLIDO
-					String[] separador = actor[i].split(",");
-					String apellido = separador[0];
-					String nombre = separador[1];
-					System.out.println("ACTOR"+actor[i]);
-					System.out.println("NOMBRE"+nombre);
-					System.out.println("APELLIDO"+apellido);
-					Actor act = new Actor(nombre, apellido);
-					listaActores.add(act);
-					for(int j = 0; j < listaActores.size(); j++) {
-						System.out.println(listaActores.get(j).getNombreActor()+""+listaActores.get(j).getApellidoActor());
-					}
-					
+			while(linea != null) {
+				String[] linea2 = linea.split(" ---> ");
+				String[] listaA = linea2[1].split(" &&& ");
+				int cont = 0;
+				for( int i = 0; i < listaA.length; i++) {
+					String[] separar = listaA[i].split(", ");
+					String nombre = separar[1];
+					String apellido = separar[0];
+					System.out.println("LINEA"+cont);
+					System.out.println("LISTA A "+listaA[i].toString());
+					System.out.println("NOMBRE "+nombre+"APELLIDO "+apellido);
+					cont++;
 				}
-				linea = buffer.readLine();
 				
-				
-			}
-			buffer.close();
-			
-		}catch (Exception e) {
-			System.err.println("PROBLEM!");
+				//separarListaDeActores(listaA);
+				linea = buffer.readLine();		
+			}	
+			buffer.close();	
 		}
-	}
+		catch (IOException e) {
+			System.err.println(e.getLocalizedMessage());
+		}
+	}*/
+
 	
+		
+
 	private Iterator<Actor> getIterador(){
 		return listaActores.iterator();
 	}

@@ -29,7 +29,7 @@ public class Pelicula {
 	}
 	
 	public void incrementarDinero (float pCantidad) {
-		
+		this.dineroRecaudado = this.dineroRecaudado + pCantidad;
 	}
 	
 	public void borrarActor(Actor pActor) {

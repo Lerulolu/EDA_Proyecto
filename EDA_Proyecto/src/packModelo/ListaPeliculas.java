@@ -23,28 +23,29 @@ public class ListaPeliculas {
 		
 	}
 	
-	public Boolean buscarPelicula(String pTitulo) throws FileNotFoundException  {
+	public Pelicula buscarPelicula(String pTitulo) throws FileNotFoundException  {
 		
 		Iterator<Pelicula> it = listaPeliculas.iterator();
 		Boolean encontrado = false;
 		Pelicula peli = null;
 		while(it.hasNext() && !encontrado) {
 			peli = it.next();
-			System.out.println(peli.getNombrePelicula());
 			if(pTitulo.equals(peli.getNombrePelicula())) {
 				encontrado = true;
 			}
-		}
-		if(encontrado) {
-			System.out.println("ENCONTRADO");
+		}if(encontrado) {
+			System.out.println("EXISTE LA PELICULA!");
 		}
 		else {
-			System.out.println("NO ENCONTRADO");
+			System.out.println("NO EXISTE LA PELICULA!");
 		}
-		return encontrado;		
+		return peli;	
 	}
 		
-	public void incrementarCantidad(float pCantidad, Pelicula pPeli) {
+	public void incrementarCantidad(float pCantidad, String pPeli) throws FileNotFoundException {
+		
+		Pelicula peli = buscarPelicula(pPeli);
+		peli.incrementarDinero(pCantidad);
 		
 	}
 	
@@ -60,7 +61,7 @@ public class ListaPeliculas {
 			BufferedReader buffer = new BufferedReader(fichero);
 			String linea = buffer.readLine();
 			while(linea != null) {
-				String[] linea2 = linea.split("--->");
+				String[] linea2 = linea.split(" --->");
 				String pelicula = linea2[0];
 				Pelicula peli = new Pelicula(pelicula, 0);
 				listaPeliculas.add(peli);
@@ -76,45 +77,19 @@ public class ListaPeliculas {
 		}
 	}
 	
-	
-	
-	/*
-	public void cargarPeliculas() {
-		try {
+	public void imprimirPeliculas() {
+		for (int i = 0; i < listaPeliculas.size(); i++) {
+			System.out.println(listaPeliculas.get(i).getNombrePelicula());
 			
-			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
-			BufferedReader buffer = new BufferedReader(fichero);
-			String linea = buffer.readLine();
-			System.out.println("CARGANDO DATOS");
-			while(!linea.isEmpty()) {
-				String[] parte = linea.split("--->");
-				String nombrePeli = parte[0];
-				listaPeliculas.add(nombrePeli);
-				System.out.println(parte[0]);
-				linea = buffer.readLine();
-			}
-			buffer.close();
-		} catch (Exception e) {
-			System.out.println("ERROR");
 		}
+
+	}
+	
+	public int getSize(){
+		return listaPeliculas.size();
 	}
 	
 	
-	public ListaPeliculas obtenerPeliculasDeActor(Actor pActor) {
-		
-		ListaPeliculas lista = new ListaPeliculas();
-		cargarPeliculas();
-		for(int i = 0; i < listaPeliculas.size(); i++) {
-			
-			if(listaActores.equals(pActor)) {
-				lista.anadirPelicula(listaPeliculas.get(i).toString());
-			}
-		}
-		return lista;
-	}
 	
-	public void anadirPelicula(String pPeli) {
-		listaPeliculas.add(pPeli);
-	}
-	*/
+	
 }
