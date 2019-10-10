@@ -12,38 +12,43 @@ public class ListaPeliculas {
 	
 	private ArrayList<Pelicula> listaPeliculas;
 	
-	public ListaPeliculas() {
-		
+	public ListaPeliculas() 
+	{
 		listaPeliculas = new ArrayList<Pelicula>();
 	}
 			
-	public Pelicula buscarPelicula(String pTitulo) throws FileNotFoundException  {
-		
+	public Pelicula buscarPelicula(String pTitulo) throws FileNotFoundException  
+	{	
 		Iterator<Pelicula> it = listaPeliculas.iterator();
 		Boolean encontrado = false;
 		Pelicula peli = null;
-		while(it.hasNext() && !encontrado) {
+		while(it.hasNext() && !encontrado) 
+		{
 			peli = it.next();
-			if(pTitulo.equals(peli.getNombrePelicula())) {
+			if(pTitulo.equals(peli.getNombrePelicula())) 
+			{
 				encontrado = true;
 			}
-		}if(encontrado) {
+		}
+		if(encontrado) 
+		{
 			System.out.println("EXISTE LA PELICULA!");
 		}
-		else {
+		else 
+		{
 			System.out.println("NO EXISTE LA PELICULA!");
 		}
 		return peli;	
 	}
 			
-	public void incrementarCantidad(float pCantidad, String pPeli) throws FileNotFoundException {
-		
+	public void incrementarCantidad(float pCantidad, String pPeli) throws FileNotFoundException 
+	{
 		Pelicula peli = buscarPelicula(pPeli);
-		peli.incrementarDinero(pCantidad);
-		
+		peli.incrementarDinero(pCantidad);	
 	}
 	
-	public void anadirPelicula(Pelicula pPeli) {
+	public void insertarPelicula(Pelicula pPeli) 
+	{
 		listaPeliculas.add(pPeli);
 	}
 	
@@ -53,15 +58,16 @@ public class ListaPeliculas {
 	}
 		
 	
-	public void imprimirPeliculas() {
-		
-		for (int i = 0; i < listaPeliculas.size(); i++) {
+	public void imprimirPeliculas() 
+	{
+		for (int i = 0; i < listaPeliculas.size(); i++) 
+		{
 			System.out.println(listaPeliculas.get(i).getNombrePelicula());
 		}
-
 	}
 	
-	public int getSize(){
+	public int getSize()
+	{
 		return listaPeliculas.size();
 	}
 	

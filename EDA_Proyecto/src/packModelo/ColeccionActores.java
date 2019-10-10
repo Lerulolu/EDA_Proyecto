@@ -32,22 +32,23 @@ public void cargarDatos() {
 			Actor actor = null;
 			while(linea != null) {
 				String[] linea2 = linea.split(" ---> ");
-				Pelicula peli = new Pelicula(linea2[0].toString(),0);
 				//Añadimos la peli a la Coleccion de Peliculas
-				ColeccionPeliculas.getMiColeccionPeliculas().añadirPelicula(peli);
+				ColeccionPeliculas.getMiColeccionPeliculas().insertarPelicula(linea2[0].toString());
+				//Creamos el objeto pelicula
+				Pelicula peli = new Pelicula(linea2[0].toString(),0);
 				String[] listaA = linea2[1].split(" &&& ");
 				for (int i = 0; i < listaA.length; i++) {
 					String nombre = listaA[i].toString();
 					actor = buscarActor(nombre);
 					if(actor == null) {
-						actor = new Actor(nombre);
 						//Si el actor no existe en la Coleccion de actores, lo añadimos 
-						listaActores.anadirActor(actor);					
+						listaActores.insertarActor(nombre);					
 					}
 					//Añadimos el actor, a la lista de actores de la peli
-					peli.insertarActor(actor);
+					peli.insertarActor(nombre);
 				}
 				//Añadimos la pelicula a lista de peliculas del actor
+				
 				actor.insertarPeli(peli);
 				linea = buffer.readLine();		
 			}	
@@ -55,9 +56,7 @@ public void cargarDatos() {
 		}
 		catch (IOException e) {
 			System.err.println(e.getLocalizedMessage());
-		}
-	
-	
+		}	
 	}
 		
 	public ListaPeliculas obtenerPeliculasDeUnActor(String pActor) {
@@ -80,9 +79,9 @@ public void cargarDatos() {
 	}
 	
 	
-	public void añadirActor(Actor pActor)
+	public void insertarActor(String pActor)
 	{
-		listaActores.anadirActor(pActor);
+		listaActores.insertarActor(pActor);
 	}
 	
 	public void eliminarActor(String pActor)

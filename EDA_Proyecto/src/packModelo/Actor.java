@@ -5,25 +5,30 @@ public class Actor {
 	private String nombre;
 	private ListaPeliculas lPelis;
 	
-	public Actor(String pNombreActor) {
+	public Actor(String pNombreActor) 
+	{
 		nombre = pNombreActor;
 		lPelis = new ListaPeliculas();
 	}
 		
-	public String getNombreActor() {
+	public String getNombreActor() 
+	{
 		return nombre;
 	}
 
-	public void insertarPeli(Pelicula pPeli) {
-		lPelis.anadirPelicula(pPeli);
+	public void insertarPeli(Pelicula pPeli) 
+	{
+		lPelis.insertarPelicula(pPeli);
 	}
 	
-	public void imprimirPelisActor() {
+	public void imprimirPelisActor() 
+	{
 		lPelis.imprimirPeliculas();
 		System.out.println(lPelis.getSize());
 	}
 	
-	public ListaPeliculas obtenerPeliculasDeActor() {
+	public ListaPeliculas obtenerPeliculasDeActor() 
+	{
 		//Para hacer las pruebas
 		lPelis.imprimirPeliculas();
 		

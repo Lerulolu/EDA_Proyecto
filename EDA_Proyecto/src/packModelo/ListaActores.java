@@ -17,45 +17,53 @@ public class ListaActores {
 	
 	private ArrayList<Actor> listaActores;
 	
-	public ListaActores() {
+	public ListaActores() 
+	{
 		listaActores = new ArrayList<Actor>();
 	}
 	
 		
-	public ListaPeliculas obtenerPelisActor(String pNombre) {
+	public ListaPeliculas obtenerPelisActor(String pNombre) 
+	{
 		Actor actor = buscarActor(pNombre);
 		ListaPeliculas lista = actor.obtenerPeliculasDeActor();
 		return lista;
-		
 	}
 	
-	public Actor buscarActor(String pNombre) {
-		
+	public Actor buscarActor(String pNombre) 
+	{	
 		Iterator<Actor> it = listaActores.iterator();
 		Actor actor = null;
 		Boolean encontrado = false;
-		while (it.hasNext() && !encontrado) {
+		while (it.hasNext() && !encontrado) 
+		{
 			actor = it.next();
-			if(pNombre.equals(actor.getNombreActor())) {
+			if(pNombre.equals(actor.getNombreActor())) 
+			{
 				encontrado = true;
 			}
 		}
 			return actor;		
 	}
 	
-	public void borrarActor(Actor pActor) {
+	public void borrarActor(Actor pActor) 
+	{
 		listaActores.remove(pActor);
 	}
 	
-	public void anadirActor(Actor pActor) {
-		listaActores.add(pActor);
+	public void insertarActor(String pActor) 
+	{
+		Actor a = new Actor(pActor);
+		listaActores.add(a);
 	}
 		
-	public void ordenarLista() {
+	public void ordenarLista() 
+	{
 		
 	}
 	
-	public int obtenerLongitudLista() {
+	public int obtenerLongitudLista() 
+	{
 		return listaActores.size();
 	}
 	
@@ -94,7 +102,8 @@ public class ListaActores {
 	
 		
 
-	private Iterator<Actor> getIterador(){
+	private Iterator<Actor> getIterador()
+	{
 		return listaActores.iterator();
 	}
 

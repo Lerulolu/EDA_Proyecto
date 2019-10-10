@@ -12,14 +12,17 @@ public class ColeccionPeliculas {
 	private ListaPeliculas listaPeliculas;
 	
 	
-	public static ColeccionPeliculas getMiColeccionPeliculas() {
-		if (miColeccionPeliculas == null) {
+	public static ColeccionPeliculas getMiColeccionPeliculas() 
+	{
+		if (miColeccionPeliculas == null) 
+		{
 			miColeccionPeliculas = new ColeccionPeliculas();
 		}
 		return miColeccionPeliculas;
 	}
 	
-	private ColeccionPeliculas() {
+	private ColeccionPeliculas() 
+	{
 		listaPeliculas = new ListaPeliculas();
 	}
 		
@@ -38,13 +41,23 @@ public class ColeccionPeliculas {
 		return listaActores;
 	}
 	
-	public Pelicula buscarPelicula(String pTitulo) throws FileNotFoundException {
+	public Pelicula buscarPelicula(String pTitulo) throws FileNotFoundException 
+	{
 		return listaPeliculas.buscarPelicula(pTitulo);
 	}
 	
-	public void añadirPelicula(Pelicula pPeli)
+	public void insertarPelicula(String pPeli) throws FileNotFoundException
 	{
-		listaPeliculas.anadirPelicula(pPeli);
+		Pelicula p = listaPeliculas.buscarPelicula(pPeli);
+		if(p == null)
+		{
+			p = new Pelicula(pPeli, 0);
+			listaPeliculas.insertarPelicula(p);
+		}
+		else
+		{
+			System.err.println("ESA PELÍCULA YA EXISTE");
+		}
 	}
 	
 	public void incrementarDineroRecaudado(String pPeli, float pCantidad) throws FileNotFoundException

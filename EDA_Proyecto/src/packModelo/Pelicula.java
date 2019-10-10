@@ -11,7 +11,8 @@ public class Pelicula {
 	private float dineroRecaudado;
 	private ListaActores lActores;
 	
-	public Pelicula(String pNombrePeli, float pDineroRecaudado) {
+	public Pelicula(String pNombrePeli, float pDineroRecaudado) 
+	{
 		titulo = pNombrePeli;
 		dineroRecaudado = pDineroRecaudado;
 		lActores = new ListaActores();
@@ -23,16 +24,19 @@ public class Pelicula {
 	
 	public void imprimirActores() {
 		
-		for (int i = 0; i < lActores.obtenerLongitudLista(); i++) {
+		for (int i = 0; i < lActores.obtenerLongitudLista(); i++) 
+		{
 			System.out.println(lActores.toString());
 		}
 	}
 	
-	public void incrementarDinero (float pCantidad) {
+	public void incrementarDinero (float pCantidad) 
+	{
 		this.dineroRecaudado = this.dineroRecaudado + pCantidad;
 	}
 	
-	public void borrarActor(Actor pActor) {
+	public void borrarActor(Actor pActor) 
+	{
 		lActores.borrarActor(pActor);
 	}
 	
@@ -41,14 +45,15 @@ public class Pelicula {
 		return lActores;
 	}
 	
-	public void insertarActor(Actor pActor) {
-		lActores.anadirActor(pActor);
+	public void insertarActor(String pActor) 
+	{
+		lActores.insertarActor(pActor);
 	}
 	
 	public void inizializarActores() {
 		
-		try {
-			
+		try 
+		{	
 			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
 			BufferedReader buffer = new BufferedReader(fichero);
 			String linea = buffer.readLine();
@@ -59,7 +64,9 @@ public class Pelicula {
 				String[] linea2 = linea.split("--->");
 				String listaActores = linea2[1];
 				String[] actor = listaActores.split("&&&");
-				while(!actor[0].isEmpty()) { //Primer nombre del actor
+				while(!actor[0].isEmpty()) 
+				{ 
+					//Primer nombre del actor
 					System.out.println(actor[0].toString());
 				}
 				System.out.println("ACTORES"+lActores.obtenerLongitudLista());
@@ -67,7 +74,9 @@ public class Pelicula {
 			}
 			buffer.close();
 			
-		}catch (Exception e) {
+		}
+		catch (Exception e) 
+		{
 			System.err.println("PROBLEM!");
 		}
 	}
