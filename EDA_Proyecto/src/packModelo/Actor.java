@@ -14,7 +14,7 @@ public class Actor {
 		return nombre;
 	}
 
-	public void añadirPeli(Pelicula pPeli) {
+	public void insertarPeli(Pelicula pPeli) {
 		lPelis.anadirPelicula(pPeli);
 	}
 	
@@ -24,7 +24,9 @@ public class Actor {
 	}
 	
 	public ListaPeliculas obtenerPeliculasDeActor() {
+		//Para hacer las pruebas
 		lPelis.imprimirPeliculas();
+		
 		return lPelis;
 	}		
 	

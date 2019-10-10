@@ -16,13 +16,7 @@ public class ListaPeliculas {
 		
 		listaPeliculas = new ArrayList<Pelicula>();
 	}
-		
-	public ListaActores obtenerActoresDePelicula(Pelicula pPeli) {
-		
-		return null;
-		
-	}
-	
+			
 	public Pelicula buscarPelicula(String pTitulo) throws FileNotFoundException  {
 		
 		Iterator<Pelicula> it = listaPeliculas.iterator();
@@ -58,29 +52,6 @@ public class ListaPeliculas {
 		return listaPeliculas.get(i);
 	}
 		
-	public void cargarPeliculas()  {
-		
-		try {
-			
-			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
-			BufferedReader buffer = new BufferedReader(fichero);
-			String linea = buffer.readLine();
-			while(linea != null) {
-				String[] linea2 = linea.split(" --->");
-				String pelicula = linea2[0];
-				Pelicula peli = new Pelicula(pelicula, 0);
-				listaPeliculas.add(peli);
-				/*for(int i = 0; i < listaPeliculas.size(); i++ ) {
-					System.out.println(listaPeliculas.get(i).getNombrePelicula());
-				}*/
-				linea = buffer.readLine();
-			}			
-			buffer.close();	
-		}
-		catch (IOException e) {
-			System.err.println(e.getLocalizedMessage());
-		}
-	}
 	
 	public void imprimirPeliculas() {
 		

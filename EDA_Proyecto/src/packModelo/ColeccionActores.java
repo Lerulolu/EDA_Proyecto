@@ -23,15 +23,7 @@ public class ColeccionActores {
 		return miColeccionActores;
 	}
 	
-	public Actor buscarActor(String pNombre) {
-		return listaActores.buscarActor(pNombre);
-	}
-	
-	public ListaPeliculas obtenerPeliculasDeUnActor(Actor actor) {
-		return actor.obtenerPeliculasDeActor();
-	}
-	
-	public void cargarActores() {
+public void cargarDatos() {
 		
 		try {
 			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
@@ -41,16 +33,22 @@ public class ColeccionActores {
 			while(linea != null) {
 				String[] linea2 = linea.split(" ---> ");
 				Pelicula peli = new Pelicula(linea2[0].toString(),0);
+				//Añadimos la peli a la Coleccion de Peliculas
+				ColeccionPeliculas.getMiColeccionPeliculas().añadirPelicula(peli);
 				String[] listaA = linea2[1].split(" &&& ");
 				for (int i = 0; i < listaA.length; i++) {
 					String nombre = listaA[i].toString();
 					actor = buscarActor(nombre);
 					if(actor == null) {
 						actor = new Actor(nombre);
-						listaActores.anadirActor(actor);
+						//Si el actor no existe en la Coleccion de actores, lo añadimos 
+						listaActores.anadirActor(actor);					
 					}
+					//Añadimos el actor, a la lista de actores de la peli
+					peli.insertarActor(actor);
 				}
-				actor.añadirPeli(peli);
+				//Añadimos la pelicula a lista de peliculas del actor
+				actor.insertarPeli(peli);
 				linea = buffer.readLine();		
 			}	
 			buffer.close();
@@ -61,6 +59,26 @@ public class ColeccionActores {
 	
 	
 	}
+		
+	public ListaPeliculas obtenerPeliculasDeUnActor(String pActor) {
+		Actor a = buscarActor(pActor);
+		ListaPeliculas listaPelis = null;
+		if(a != null)
+		{
+			listaPelis = a.obtenerPeliculasDeActor();
+		}
+		else
+		{
+			System.err.println("ESE ACTOR NO EXISTE");
+		}
+		return listaPelis;
+	}
+	
+	public Actor buscarActor(String pNombre) 
+	{
+		return listaActores.buscarActor(pNombre);
+	}
+	
 	
 	public void añadirActor(Actor pActor)
 	{
@@ -80,12 +98,15 @@ public class ColeccionActores {
 				Pelicula p = pelisActor.obtenerPelicula(i);
 				//Borramos el actor de la lista de actores de la peli
 				p.borrarActor(a);
-				//Lo eliminamos de la coleccion
-				listaActores.borrarActor(a);
 			}
+			//Lo eliminamos de la coleccion de actores
+			listaActores.borrarActor(a);
+		}
+		else
+		{
+			System.err.println("ESE ACTOR NO EXISTE");
 		}
 		
-		listaActores.borrarActor(a);		
 		
 	}
 	

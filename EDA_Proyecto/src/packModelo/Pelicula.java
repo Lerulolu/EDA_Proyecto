@@ -36,6 +36,11 @@ public class Pelicula {
 		lActores.borrarActor(pActor);
 	}
 	
+	public ListaActores obtenerActoresDeUnaPelicula()
+	{
+		return lActores;
+	}
+	
 	public void insertarActor(Actor pActor) {
 		lActores.anadirActor(pActor);
 	}
