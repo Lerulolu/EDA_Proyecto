@@ -59,47 +59,6 @@ public class ListaActores {
 		return listaActores.size();
 	}
 	
-	public void cargarActores() {
-		
-		try {
-			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
-			BufferedReader buffer = new BufferedReader(fichero);
-			String linea = buffer.readLine();
-			Actor actor = null;
-			while(linea != null) {
-				String[] linea2 = linea.split(" ---> ");
-				Pelicula peli = new Pelicula(linea2[0].toString(),0);
-				String[] listaA = linea2[1].split(" &&& ");
-				for (int i = 0; i < listaA.length; i++) {
-					String nombre = listaA[i].toString();
-					actor = buscarActor(nombre);
-					if(actor == null) {
-						actor = new Actor(nombre);
-						listaActores.add(actor);
-					}
-				}
-				actor.añadirPeli(peli);
-				linea = buffer.readLine();		
-			}	
-			buffer.close();
-		}
-		catch (IOException e) {
-			System.err.println(e.getLocalizedMessage());
-		}
-	
-	
-	}
-	
-	public void ordenarActoresAlfabeticamente() {
-		cargarActores();
-		ArrayList<String> list = null;
-		for(int i = 0; i < listaActores.size(); i++) {
-			list.add(i, listaActores.get(i).getNombreActor());
-		}
-		for(int j = 0; j < list.size(); j++) {
-			System.out.println(list.toString());
-		}
-	}
 	
 	/*public void cargarActoresComas() {
 		

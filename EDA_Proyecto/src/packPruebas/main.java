@@ -57,7 +57,7 @@ public class main {
                     case 4:
                         System.out.println("Ordenar lista de actores");
                         ColeccionActores.getMiColeccionActores().cargarActores();
-                        ColeccionActores.getMiColeccionActores().ordenarActores();
+                        //ColeccionActores.getMiColeccionActores().ordenarActores();
                         break;
                     case 5:
                         salir = true;
