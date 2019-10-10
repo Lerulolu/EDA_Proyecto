@@ -23,5 +23,13 @@ public class ColeccionActores {
 	public Actor buscarActor(String pNombre) {
 		return listaActores.buscarActor(pNombre);
 	}
+	
+	public ListaPeliculas obtenerPeliculasDeUnActor(Actor actor) {
+		return actor.obtenerPeliculasDeActor();
+	}
+	
+	public void ordenarActores() {
+		listaActores.ordenarActoresAlfabeticamente();
+	}
 
 }

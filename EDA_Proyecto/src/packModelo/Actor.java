@@ -1,7 +1,5 @@
 package packModelo;
 
-import java.util.Iterator;
-
 public class Actor {
 	
 	private String nombre;
@@ -23,6 +21,11 @@ public class Actor {
 	public void imprimirPelisActor() {
 		lPelis.imprimirPeliculas();
 		System.out.println(lPelis.getSize());
+	}
+	
+	public ListaPeliculas obtenerPeliculasDeActor() {
+		lPelis.imprimirPeliculas();
+		return lPelis;
 	}
 		
 	

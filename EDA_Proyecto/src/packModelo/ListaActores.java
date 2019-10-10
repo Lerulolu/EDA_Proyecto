@@ -5,10 +5,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
-import java.util.Scanner;
-
-import sun.net.www.content.text.plain;
+import java.util.LinkedList;
+import java.util.List;
 
 
 public class ListaActores {
@@ -22,8 +24,8 @@ public class ListaActores {
 		
 	public ListaPeliculas obtenerPelisActor(String pNombre) {
 		Actor actor = buscarActor(pNombre);
-		
-		return null;
+		ListaPeliculas lista = actor.obtenerPeliculasDeActor();
+		return lista;
 		
 	}
 	
@@ -58,6 +60,7 @@ public class ListaActores {
 	}
 	
 	public void cargarActores() {
+		
 		try {
 			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
 			BufferedReader buffer = new BufferedReader(fichero);
@@ -85,6 +88,17 @@ public class ListaActores {
 		}
 	
 	
+	}
+	
+	public void ordenarActoresAlfabeticamente() {
+		cargarActores();
+		ArrayList<String> list = null;
+		for(int i = 0; i < listaActores.size(); i++) {
+			list.add(i, listaActores.get(i).getNombreActor());
+		}
+		for(int j = 0; j < list.size(); j++) {
+			System.out.println(list.toString());
+		}
 	}
 	
 	/*public void cargarActoresComas() {

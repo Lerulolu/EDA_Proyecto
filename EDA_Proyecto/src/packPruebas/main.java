@@ -49,9 +49,17 @@ public class main {
                         System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
                         break;
                     case 3:
-                        System.out.println("Has seleccionado la opcion 3");
+                        System.out.println("Obtener peliculas de un actor");
+                        ColeccionActores.getMiColeccionActores().cargarActores();
+                        Actor a1 = ColeccionActores.getMiColeccionActores().buscarActor("Devon, Tony");
+                        ColeccionActores.getMiColeccionActores().obtenerPeliculasDeUnActor(a1);
                         break;
                     case 4:
+                        System.out.println("Ordenar lista de actores");
+                        ColeccionActores.getMiColeccionActores().cargarActores();
+                        ColeccionActores.getMiColeccionActores().ordenarActores();
+                        break;
+                    case 5:
                         salir = true;
                         break;
                     default:

@@ -78,9 +78,9 @@ public class ListaPeliculas {
 	}
 	
 	public void imprimirPeliculas() {
+		
 		for (int i = 0; i < listaPeliculas.size(); i++) {
 			System.out.println(listaPeliculas.get(i).getNombrePelicula());
-			
 		}
 
 	}
