@@ -41,7 +41,7 @@ public class ListaPeliculas {
 		}
 		return peli;	
 	}
-		
+			
 	public void incrementarCantidad(float pCantidad, String pPeli) throws FileNotFoundException {
 		
 		Pelicula peli = buscarPelicula(pPeli);
@@ -51,6 +51,11 @@ public class ListaPeliculas {
 	
 	public void anadirPelicula(Pelicula pPeli) {
 		listaPeliculas.add(pPeli);
+	}
+	
+	public Pelicula obtenerPelicula(int i)
+	{
+		return listaPeliculas.get(i);
 	}
 		
 	public void cargarPeliculas()  {

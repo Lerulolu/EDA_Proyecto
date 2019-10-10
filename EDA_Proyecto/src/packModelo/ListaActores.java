@@ -50,7 +50,7 @@ public class ListaActores {
 	public void anadirActor(Actor pActor) {
 		listaActores.add(pActor);
 	}
-	
+		
 	public void ordenarLista() {
 		
 	}

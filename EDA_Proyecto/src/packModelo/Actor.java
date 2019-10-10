@@ -26,7 +26,6 @@ public class Actor {
 	public ListaPeliculas obtenerPeliculasDeActor() {
 		lPelis.imprimirPeliculas();
 		return lPelis;
-	}
-		
+	}		
 	
 }

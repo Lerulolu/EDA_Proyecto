@@ -62,6 +62,33 @@ public class ColeccionActores {
 	
 	}
 	
+	public void añadirActor(Actor pActor)
+	{
+		listaActores.anadirActor(pActor);
+	}
+	
+	public void eliminarActor(String pActor)
+	{
+		Actor a = listaActores.buscarActor(pActor);
+		if(a != null)
+		{
+			//Hay que borrarlo de las pelis en las que aparece --> Obtenemos la lista de peliculas de ese actor
+			ListaPeliculas pelisActor = a.obtenerPeliculasDeActor();
+			//Para cada peli de esa lista, borrar el actor
+			for (int i = 0; i < pelisActor.getSize(); i++)
+			{
+				Pelicula p = pelisActor.obtenerPelicula(i);
+				//Borramos el actor de la lista de actores de la peli
+				p.borrarActor(a);
+				//Lo eliminamos de la coleccion
+				listaActores.borrarActor(a);
+			}
+		}
+		
+		listaActores.borrarActor(a);		
+		
+	}
+	
 	public void ordenarActoresAlfabeticamente() {
 		
 	

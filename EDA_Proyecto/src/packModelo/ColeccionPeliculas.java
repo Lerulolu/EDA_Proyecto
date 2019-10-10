@@ -27,5 +27,6 @@ public class ColeccionPeliculas {
 		listaPeliculas.cargarPeliculas();
 	}
 	
+		
 
 }
