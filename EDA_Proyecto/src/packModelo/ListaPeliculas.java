@@ -32,11 +32,11 @@ public class ListaPeliculas {
 		}
 		if(encontrado) 
 		{
-			System.out.println("EXISTE LA PELICULA!");
+			//System.out.println("EXISTE LA PELICULA!");
 		}
 		else 
 		{
-			System.out.println("NO EXISTE LA PELICULA!");
+			//System.out.println("NO EXISTE LA PELICULA!");
 		}
 		return peli;	
 	}

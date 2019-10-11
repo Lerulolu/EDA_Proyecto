@@ -1,9 +1,11 @@
 package packModelo;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class ColeccionPeliculas {
@@ -30,6 +32,7 @@ public class ColeccionPeliculas {
 	{
 		Pelicula p = buscarPelicula(pPeli);
 		ListaActores listaActores = null;
+		System.out.println(p.getNombrePelicula());
 		if(p != null)
 		{
 			listaActores = p.obtenerActoresDeUnaPelicula();
@@ -38,7 +41,10 @@ public class ColeccionPeliculas {
 		{
 			System.err.println("ESA PELÍCULA NO EXISTE");
 		}
+		System.out.println(listaActores.obtenerLongitudLista());
 		return listaActores;
+		
+		
 	}
 	
 	public Pelicula buscarPelicula(String pTitulo) throws FileNotFoundException 
@@ -56,7 +62,7 @@ public class ColeccionPeliculas {
 		}
 		else
 		{
-			System.err.println("ESA PELÍCULA YA EXISTE");
+			//System.err.println("ESA PELÍCULA YA EXISTE");
 		}
 	}
 	
@@ -69,8 +75,40 @@ public class ColeccionPeliculas {
 		}
 		else
 		{
-			System.err.println("ESA PELÍCULA NO EXISTE");
+			//System.err.println("ESA PELÍCULA NO EXISTE");
 		}
+	}
+	
+
+	public void generarLista() {
+		
+		FileWriter flwriter = null;
+		
+		try {
+			
+			//crea el flujo para escribir en el archivo
+			flwriter = new FileWriter("src/packDatos/ListaActualizada.txt");
+			//crea un buffer o flujo intermedio antes de escribir directamente en el archivo
+			BufferedWriter bfwriter = new BufferedWriter(flwriter);
+			for(int i = 0; i < listaPeliculas.getSize(); i++) {
+				//escribe los datos en el archivo
+				Pelicula peli = listaPeliculas.obtenerPelicula(i);
+				ListaActores lA = obtenerActoresDeUnaPeli(peli.getNombrePelicula());
+				
+				bfwriter.write(peli.getNombrePelicula()+" ---> ");
+				for(int j = 0; j < lA.obtenerLongitudLista(); j++) {
+					String nombreActor = lA.obtenerNombreActor();
+					bfwriter.write(nombreActor);
+				}
+				bfwriter.newLine();
+			}
+			//cierra el buffer intermedio
+			bfwriter.close();
+			System.out.println("Archivo creado satisfactoriamente..");
+ 
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
 	}
 
 }

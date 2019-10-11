@@ -23,7 +23,8 @@ public class ColeccionActores {
 		return miColeccionActores;
 	}
 	
-public void cargarDatos() {
+
+	public void cargarDatos() {
 		
 		try {
 			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));

@@ -67,6 +67,16 @@ public class ListaActores {
 		return listaActores.size();
 	}
 	
+	public String obtenerNombreActor() {
+		
+		String nombre = null;
+		for(int i = 0; i < listaActores.size(); i++) {
+			nombre = listaActores.get(i).getNombreActor();
+		}
+		return nombre;
+	}
+	
+	
 	
 	/*public void cargarActoresComas() {
 		
