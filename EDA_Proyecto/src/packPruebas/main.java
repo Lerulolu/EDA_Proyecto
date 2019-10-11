@@ -48,11 +48,12 @@ public class main {
                         ColeccionActores.getMiColeccionActores().cargarDatos();
                 		//ColeccionActores.getMiColeccionActores().imprimirActores();
 
-                        ColeccionActores.getMiColeccionActores().buscarActor("French, Steve");
+                        ColeccionActores.getMiColeccionActores().buscarActor("French, Steve (VIII)");
                         System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
                         break;
                     case 3:
                         System.out.println("Obtener peliculas de un actor");
+                        ColeccionActores.getMiColeccionActores().cargarDatos();
                         ColeccionActores.getMiColeccionActores().obtenerPeliculasDeUnActor("Devon, Tony");
                         System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
                         break;
