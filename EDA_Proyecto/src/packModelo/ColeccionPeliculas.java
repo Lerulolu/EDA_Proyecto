@@ -51,13 +51,12 @@ public class ColeccionPeliculas {
 		return listaPeliculas.buscarPelicula(pTitulo);
 	}
 	
-	public void insertarPelicula(String pPeli) throws FileNotFoundException
+	public void insertarPelicula(String pPeli, float pDineroRecaudado) throws FileNotFoundException
 	{
 		Pelicula p = listaPeliculas.buscarPelicula(pPeli);
 		if(p == null)
 		{
-			p = new Pelicula(pPeli, 0);
-			listaPeliculas.insertarPelicula(p);
+			listaPeliculas.insertarPelicula(pPeli,pDineroRecaudado);
 		}
 		else
 		{
@@ -95,7 +94,7 @@ public void generarLista() {
 				
 				bfwriter.write(peli.getNombrePelicula()+" ---> ");
 				for(int j = 0; j < lA.obtenerLongitudLista(); j++) {
-					String nombreActor = lA.obtenerNombreActor();
+					String nombreActor = lA.obtenerNombreActor(j);
 					bfwriter.write(nombreActor);
 				}
 				bfwriter.newLine();

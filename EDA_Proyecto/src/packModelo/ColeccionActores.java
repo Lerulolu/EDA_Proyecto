@@ -33,7 +33,7 @@ public void cargarDatos() {
 			while(linea != null) {
 				String[] linea2 = linea.split(" ---> ");
 				//Añadimos la peli a la Coleccion de Peliculas
-				ColeccionPeliculas.getMiColeccionPeliculas().insertarPelicula(linea2[0].toString());
+				ColeccionPeliculas.getMiColeccionPeliculas().insertarPelicula(linea2[0].toString(),0);
 				//Creamos el objeto pelicula
 				Pelicula peli = new Pelicula(linea2[0].toString(),0);
 				String[] listaA = linea2[1].split(" &&& ");

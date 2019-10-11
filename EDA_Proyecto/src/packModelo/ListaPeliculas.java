@@ -43,22 +43,55 @@ public class ListaPeliculas {
 	public void incrementarCantidad(float pCantidad, String pPeli) throws FileNotFoundException 
 	{
 		Pelicula peli = buscarPelicula(pPeli);
-		peli.incrementarDinero(pCantidad);	
+		if(peli == null)
+		{
+			System.out.println("ESA PELI NO EXISTE");
+		}
+		else
+		{
+			peli.incrementarDinero(pCantidad);	
+		}
 	}
 	
-	public void insertarPelicula(Pelicula pPeli) 
+	public void insertarPelicula(String pPeli, float pDineroRecaudado) throws FileNotFoundException 
 	{
-		listaPeliculas.add(pPeli);
+		Pelicula peli = buscarPelicula(pPeli);
+		if(peli == null)
+		{
+			peli = new Pelicula(pPeli, pDineroRecaudado);
+			listaPeliculas.add(peli);
+		}
+		else
+		{
+			System.out.println("ESA PELICULA YA EXISTE");
+		}
 	}
 	
-	public void eliminarPelicula(Pelicula pPeli) 
+	public void eliminarPelicula(String pPeli) throws FileNotFoundException 
 	{
-		listaPeliculas.remove(pPeli);
+		Pelicula p = buscarPelicula(pPeli);
+		if(p != null)
+		{
+			listaPeliculas.remove(p);
+
+		}
+		else
+		{
+			System.out.println("ESA PELICULA NO EXISTE");
+		}
 	}
 	
 	public Pelicula obtenerPelicula(int i)
 	{
-		return listaPeliculas.get(i);
+		if(i > listaPeliculas.size()-1)
+		{
+			System.out.println("ESE NÚMERO DE ELEMENTO NO EXISTE");
+			return null;
+		}
+		else
+		{
+			return listaPeliculas.get(i);
+		}
 	}
 		
 	

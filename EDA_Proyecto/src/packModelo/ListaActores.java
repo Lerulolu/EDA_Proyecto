@@ -85,12 +85,9 @@ public class ListaActores {
 		return listaActores.size();
 	}
 	
-	public String obtenerNombreActor() {
+	public String obtenerNombreActor(int i) {
 			
-			String nombre = null;
-			for(int i = 0; i < listaActores.size(); i++) {
-				nombre = listaActores.get(i).getNombreActor();
-			}
+			String nombre = nombre = listaActores.get(i).getNombreActor();
 			return nombre;
 		}
 	

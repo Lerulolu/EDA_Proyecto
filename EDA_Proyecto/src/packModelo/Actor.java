@@ -23,7 +23,7 @@ public class Actor {
 		Pelicula p = lPelis.buscarPelicula(pPeli.getNombrePelicula());
 		if(p == null)
 		{
-			lPelis.insertarPelicula(pPeli);
+			lPelis.insertarPelicula(pPeli.getNombrePelicula(),pPeli.getDineroRecaudado());
 		}
 		else
 		{
@@ -31,7 +31,7 @@ public class Actor {
 		}
 	}
 	
-	public void eliminarPeli(Pelicula pPeli) 
+	public void eliminarPeli(String pPeli) throws FileNotFoundException 
 	{
 		lPelis.eliminarPelicula(pPeli);
 	}
