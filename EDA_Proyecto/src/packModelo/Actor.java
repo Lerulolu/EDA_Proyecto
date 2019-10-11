@@ -50,7 +50,6 @@ public class Actor {
 	{
 		//Para hacer las pruebas
 		lPelis.imprimirPeliculas();
-		
 		return lPelis;
 	}		
 	

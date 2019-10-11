@@ -82,6 +82,11 @@ public class ListaActores {
 		Actor a = new Actor(pActor);
 		listaActores.add(a);
 	}
+	
+	public Actor obtenerActorPorPosicion(int i)
+	{
+		return listaActores.get(i);
+	}
 		
 	public void ordenarLista() 
 	{

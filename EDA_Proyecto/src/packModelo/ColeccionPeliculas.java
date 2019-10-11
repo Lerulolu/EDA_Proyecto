@@ -32,7 +32,6 @@ public class ColeccionPeliculas {
 	{
 		Pelicula p = buscarPelicula(pPeli);
 		ListaActores listaActores = null;
-		System.out.println(p.getNombrePelicula());
 		if(p != null)
 		{
 			listaActores = p.obtenerActoresDeUnaPelicula();
@@ -42,7 +41,6 @@ public class ColeccionPeliculas {
 			System.err.println("ESA PELÍCULA NO EXISTE");
 		}
 		
-		System.out.println(listaActores.obtenerLongitudLista());
 		return listaActores;
 	}
 	
@@ -51,6 +49,10 @@ public class ColeccionPeliculas {
 		return listaPeliculas.buscarPelicula(pTitulo);
 	}
 	
+	public Pelicula obtenerPeliculaPorPosicion(int i)
+	{
+		return listaPeliculas.obtenerPelicula(i);
+	}
 	public void insertarPelicula(String pPeli, float pDineroRecaudado) throws FileNotFoundException
 	{
 		Pelicula p = listaPeliculas.buscarPelicula(pPeli);

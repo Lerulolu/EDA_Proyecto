@@ -25,7 +25,7 @@ public class ListaPeliculas {
 		while(it.hasNext() && !encontrado) 
 		{
 			peli = it.next();
-			if(pTitulo == peli.getNombrePelicula())
+			if(pTitulo.equals(peli.getNombrePelicula()))
 			{
 				encontrado = true;
 			}

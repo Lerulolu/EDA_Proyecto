@@ -30,6 +30,7 @@ public void cargarDatos() {
 			BufferedReader buffer = new BufferedReader(fichero);
 			String linea = buffer.readLine();
 			Actor actor = null;
+			int posPeli = 0;
 			while(linea != null) {
 				String[] linea2 = linea.split(" ---> ");
 				//Añadimos la peli a la Coleccion de Peliculas
@@ -42,13 +43,15 @@ public void cargarDatos() {
 					//Insertamos el actor en el catalogo completo de actores
 					listaActores.insertarActorSinBuscar(nombre);
 					//Añadimos el actor, a la lista de actores de la peli
-					peli.insertarActorSinBuscar(nombre);
-					actor = new Actor(nombre);
+					actor = listaActores.obtenerActorPorPosicion(i);
+					peli = ColeccionPeliculas.getMiColeccionPeliculas().obtenerPeliculaPorPosicion(posPeli);
+					peli.insertarActorSinBuscar(actor.getNombreActor());
 				}
 				//Añadimos la pelicula a lista de peliculas del actor
-				
 				actor.insertarPeliSinBuscar(peli);
-				linea = buffer.readLine();		
+				posPeli++;
+				linea = buffer.readLine();	
+				
 			}	
 			buffer.close();
 		}
