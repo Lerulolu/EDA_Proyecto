@@ -30,7 +30,7 @@ class ActorTest {
 		ListaPeliculas listaPelis = a.obtenerPeliculasDeActor();
 		
 		assertTrue(listaPelis.getSize() == 1);
-		assertTrue(listaPelis.buscarPelicula("Los Juegos del Hambre").equals(p1));
+		assertNotNull(listaPelis.buscarPelicula("Los Juegos del Hambre"));
 		
 		a.insertarPeli(p1);
 		
@@ -43,7 +43,7 @@ class ActorTest {
 		
 		assertTrue(a.obtenerPeliculasDeActor().getSize() != 0);
 		
-		a.eliminarPeli(p1);
+		a.eliminarPeli(p1.getNombrePelicula());
 		
 		assertTrue(a.obtenerPeliculasDeActor().getSize() == 0);
 	}

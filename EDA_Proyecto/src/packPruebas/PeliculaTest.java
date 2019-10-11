@@ -14,7 +14,6 @@ class PeliculaTest {
 
 	@Test
 	void testGetNombrePelicula() {
-		
 		assertTrue(p1.getNombrePelicula() == "Los Juegos del Hambre");
 		assertFalse(p1.getNombrePelicula() == "A");
 	}
