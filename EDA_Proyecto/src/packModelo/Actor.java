@@ -31,6 +31,11 @@ public class Actor {
 		}
 	}
 	
+	public void insertarPeliSinBuscar(Pelicula pPeli)
+	{
+		lPelis.insertarPeliSinBuscar(pPeli);
+	}
+	
 	public void eliminarPeli(String pPeli) throws FileNotFoundException 
 	{
 		lPelis.eliminarPelicula(pPeli);

@@ -32,10 +32,12 @@ public class ListaPeliculas {
 		}
 		if(encontrado)
 		{
+			System.out.println("Pelicula Encontrada");
 			return peli;
 		}
 		else
 		{
+			System.out.println("Pelicula NO Encontrada");
 			return null;
 		}
 	}
@@ -65,6 +67,11 @@ public class ListaPeliculas {
 		{
 			System.out.println("ESA PELICULA YA EXISTE");
 		}
+	}
+	
+	public void insertarPeliSinBuscar(Pelicula pPeli)
+	{
+		listaPeliculas.add(pPeli);
 	}
 	
 	public void eliminarPelicula(String pPeli) throws FileNotFoundException 

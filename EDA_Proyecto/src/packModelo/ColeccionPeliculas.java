@@ -64,6 +64,12 @@ public class ColeccionPeliculas {
 		}
 	}
 	
+	public void insertarPeliculaSinBuscar(String pPeli, float pDineroRecaudado) throws FileNotFoundException
+	{
+		Pelicula p = new Pelicula(pPeli, pDineroRecaudado);
+		listaPeliculas.insertarPeliSinBuscar(p);
+	}
+	
 	public void incrementarDineroRecaudado(String pPeli, float pCantidad) throws FileNotFoundException
 	{
 		Pelicula p = buscarPelicula(pPeli);

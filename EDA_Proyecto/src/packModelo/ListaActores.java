@@ -31,17 +31,19 @@ public class ListaActores {
 		while (it.hasNext() && !encontrado) 
 		{
 			actor = it.next();
-			if(pNombre == actor.getNombreActor())
+			if(pNombre.equals(actor.getNombreActor()))
 			{
 				encontrado = true;
 			}
 		}
 		if(encontrado)
 		{
+			System.out.println("ACTOR ENCONTRADO");
 			return actor;
 		}
 		else
 		{
+			System.err.println("ACTOR NO ENCONTRADO");
 			return null;
 		}
 	}
@@ -73,6 +75,12 @@ public class ListaActores {
 			System.out.println("ESE ACTOR YA EXISTE");
 		}
 			
+	}
+	
+	public void insertarActorSinBuscar(String pActor)
+	{
+		Actor a = new Actor(pActor);
+		listaActores.add(a);
 	}
 		
 	public void ordenarLista() 

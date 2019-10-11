@@ -58,4 +58,10 @@ public class Pelicula {
 		
 	}
 	
+	public void insertarActorSinBuscar(String pActor)
+	{
+		Actor a = new Actor(pActor);
+		lActores.insertarActorSinBuscar(pActor);
+	}
+	
 }

@@ -33,19 +33,21 @@ public void cargarDatos() {
 			while(linea != null) {
 				String[] linea2 = linea.split(" ---> ");
 				//Añadimos la peli a la Coleccion de Peliculas
-				ColeccionPeliculas.getMiColeccionPeliculas().insertarPelicula(linea2[0].toString(),0);
+				ColeccionPeliculas.getMiColeccionPeliculas().insertarPeliculaSinBuscar(linea2[0].toString(),0);
 				//Creamos el objeto pelicula
 				Pelicula peli = new Pelicula(linea2[0].toString(),0);
 				String[] listaA = linea2[1].split(" &&& ");
 				for (int i = 0; i < listaA.length; i++) {
 					String nombre = listaA[i].toString();
 					//Insertamos el actor en el catalogo completo de actores
-					listaActores.insertarActor(nombre);
+					listaActores.insertarActorSinBuscar(nombre);
 					//Añadimos el actor, a la lista de actores de la peli
-					peli.insertarActor(nombre);
+					peli.insertarActorSinBuscar(nombre);
+					actor = new Actor(nombre);
 				}
 				//Añadimos la pelicula a lista de peliculas del actor
-				actor.insertarPeli(peli);
+				
+				actor.insertarPeliSinBuscar(peli);
 				linea = buffer.readLine();		
 			}	
 			buffer.close();
@@ -103,6 +105,14 @@ public void cargarDatos() {
 		}
 		
 		
+	}
+	
+	public void imprimirActores()
+	{
+		for (int i = 0; i < listaActores.obtenerLongitudLista(); i++)
+		{
+			System.out.println(listaActores.obtenerNombreActor(i));
+		}
 	}
 	
 	public void ordenarActoresAlfabeticamente() {
