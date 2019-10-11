@@ -22,14 +22,7 @@ public class ListaActores {
 		listaActores = new ArrayList<Actor>();
 	}
 	
-		
-	public ListaPeliculas obtenerPelisActor(String pNombre) 
-	{
-		Actor actor = buscarActor(pNombre);
-		ListaPeliculas lista = actor.obtenerPeliculasDeActor();
-		return lista;
-	}
-	
+			
 	public Actor buscarActor(String pNombre) 
 	{	
 		Iterator<Actor> it = listaActores.iterator();
@@ -38,12 +31,19 @@ public class ListaActores {
 		while (it.hasNext() && !encontrado) 
 		{
 			actor = it.next();
-			if(pNombre.equals(actor.getNombreActor())) 
+			if(pNombre == actor.getNombreActor())
 			{
 				encontrado = true;
 			}
 		}
-			return actor;		
+		if(encontrado)
+		{
+			return actor;
+		}
+		else
+		{
+			return null;
+		}
 	}
 	
 	public void borrarActor(Actor pActor) 
@@ -52,9 +52,18 @@ public class ListaActores {
 	}
 	
 	public void insertarActor(String pActor) 
-	{
-		Actor a = new Actor(pActor);
-		listaActores.add(a);
+	{	
+		Actor a = buscarActor(pActor);
+		if(a == null)
+		{
+			a = new Actor(pActor);
+			listaActores.add(a);
+		}
+		else
+		{
+			System.out.println("ESE ACTOR YA EXISTE");
+		}
+			
 	}
 		
 	public void ordenarLista() 
@@ -68,15 +77,13 @@ public class ListaActores {
 	}
 	
 	public String obtenerNombreActor() {
-		
-		String nombre = null;
-		for(int i = 0; i < listaActores.size(); i++) {
-			nombre = listaActores.get(i).getNombreActor();
+			
+			String nombre = null;
+			for(int i = 0; i < listaActores.size(); i++) {
+				nombre = listaActores.get(i).getNombreActor();
+			}
+			return nombre;
 		}
-		return nombre;
-	}
-	
-	
 	
 	/*public void cargarActoresComas() {
 		

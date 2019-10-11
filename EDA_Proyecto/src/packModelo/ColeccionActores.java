@@ -23,8 +23,7 @@ public class ColeccionActores {
 		return miColeccionActores;
 	}
 	
-
-	public void cargarDatos() {
+public void cargarDatos() {
 		
 		try {
 			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
@@ -40,16 +39,12 @@ public class ColeccionActores {
 				String[] listaA = linea2[1].split(" &&& ");
 				for (int i = 0; i < listaA.length; i++) {
 					String nombre = listaA[i].toString();
-					actor = buscarActor(nombre);
-					if(actor == null) {
-						//Si el actor no existe en la Coleccion de actores, lo añadimos 
-						listaActores.insertarActor(nombre);					
-					}
+					//Insertamos el actor en el catalogo completo de actores
+					listaActores.insertarActor(nombre);
 					//Añadimos el actor, a la lista de actores de la peli
 					peli.insertarActor(nombre);
 				}
 				//Añadimos la pelicula a lista de peliculas del actor
-				
 				actor.insertarPeli(peli);
 				linea = buffer.readLine();		
 			}	
@@ -97,7 +92,7 @@ public class ColeccionActores {
 			{
 				Pelicula p = pelisActor.obtenerPelicula(i);
 				//Borramos el actor de la lista de actores de la peli
-				p.borrarActor(a);
+				p.borrarActor(a.getNombreActor());
 			}
 			//Lo eliminamos de la coleccion de actores
 			listaActores.borrarActor(a);

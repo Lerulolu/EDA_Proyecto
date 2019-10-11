@@ -19,15 +19,12 @@ public class main {
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
         Stopwatch reloj = null;
-       
+        while (!salir) {
  
-        	System.out.println("1. Opcion 1 - Buscar Pelicula");
-            System.out.println("2. Opcion 2 - Buscar Actor");
-            System.out.println("3. Opcion 3 - Obtener Peliculas de un Actor");
-            System.out.println("4. Opcion 4 - Obtener Actores de una Pelicula");
-            System.out.println("4. Opcion 4 - Ordenar una Lista");
-            System.out.println("5. Opcion 5 - Generar un fichero");
-            System.out.println("6. Salir");
+            System.out.println("1. Opcion 1");
+            System.out.println("2. Opcion 2");
+            System.out.println("3. Opcion 3");
+            System.out.println("4. Salir");
  
             try {
  
@@ -58,22 +55,11 @@ public class main {
                         System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
                         break;
                     case 4:
-                        System.out.println("Obtener Actores de una Pelicula");
-                        ColeccionActores.getMiColeccionActores().cargarDatos();
-                        ColeccionPeliculas.getMiColeccionPeliculas().obtenerActoresDeUnaPeli("Eager to Die");
-                        System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
-                        break;
-                    case 5:
                         System.out.println("Ordenar lista de actores");
                         ColeccionActores.getMiColeccionActores().cargarDatos();
                         //ColeccionActores.getMiColeccionActores().ordenarActores();
                         break;
-                    case 6:
-                        System.out.println("Ordenar lista de peliculas");
-                        ColeccionActores.getMiColeccionActores().cargarDatos();
-                        ColeccionPeliculas.getMiColeccionPeliculas().generarLista();
-                        break;
-                    case 7:
+                    case 5:
                         salir = true;
                         break;
                     default:
@@ -87,6 +73,6 @@ public class main {
 
 
 		
-	
+	}
 
 }

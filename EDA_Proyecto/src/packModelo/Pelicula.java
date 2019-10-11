@@ -22,6 +22,11 @@ public class Pelicula {
 		return titulo;
 	}
 	
+	public float getDineroRecaudado()
+	{
+		return dineroRecaudado;
+	}
+	
 	public void imprimirActores() {
 		
 		for (int i = 0; i < lActores.obtenerLongitudLista(); i++) 
@@ -35,9 +40,18 @@ public class Pelicula {
 		this.dineroRecaudado = this.dineroRecaudado + pCantidad;
 	}
 	
-	public void borrarActor(Actor pActor) 
+	public void borrarActor(String pActor) 
 	{
-		lActores.borrarActor(pActor);
+		Actor a = lActores.buscarActor(pActor);
+		if(a != null)
+		{
+			lActores.borrarActor(a);
+		}
+		else
+		{
+			System.out.println("ESE ACTOR NO EXISTE");
+		}
+		
 	}
 	
 	public ListaActores obtenerActoresDeUnaPelicula()
@@ -47,39 +61,9 @@ public class Pelicula {
 	
 	public void insertarActor(String pActor) 
 	{
-		lActores.insertarActor(pActor);
-	}
-	
-	public void inizializarActores() {
 		
-		try 
-		{	
-			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
-			BufferedReader buffer = new BufferedReader(fichero);
-			String linea = buffer.readLine();
-			System.out.println("CARGANDO LOS ACTORES");
-			while(!linea.isEmpty()) {
-				
-				//ELIMINAR LA PELI
-				String[] linea2 = linea.split("--->");
-				String listaActores = linea2[1];
-				String[] actor = listaActores.split("&&&");
-				while(!actor[0].isEmpty()) 
-				{ 
-					//Primer nombre del actor
-					System.out.println(actor[0].toString());
-				}
-				System.out.println("ACTORES"+lActores.obtenerLongitudLista());
-				linea = buffer.readLine();
-			}
-			buffer.close();
-			
-		}
-		catch (Exception e) 
-		{
-			System.err.println("PROBLEM!");
-		}
+		lActores.insertarActor(pActor);
+		
 	}
-	
 	
 }

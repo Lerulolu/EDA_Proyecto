@@ -41,10 +41,9 @@ public class ColeccionPeliculas {
 		{
 			System.err.println("ESA PELÍCULA NO EXISTE");
 		}
+		
 		System.out.println(listaActores.obtenerLongitudLista());
 		return listaActores;
-		
-		
 	}
 	
 	public Pelicula buscarPelicula(String pTitulo) throws FileNotFoundException 
@@ -62,7 +61,7 @@ public class ColeccionPeliculas {
 		}
 		else
 		{
-			//System.err.println("ESA PELÍCULA YA EXISTE");
+			System.err.println("ESA PELÍCULA YA EXISTE");
 		}
 	}
 	
@@ -75,12 +74,11 @@ public class ColeccionPeliculas {
 		}
 		else
 		{
-			//System.err.println("ESA PELÍCULA NO EXISTE");
+			System.err.println("ESA PELÍCULA NO EXISTE");
 		}
 	}
 	
-
-	public void generarLista() {
+public void generarLista() {
 		
 		FileWriter flwriter = null;
 		

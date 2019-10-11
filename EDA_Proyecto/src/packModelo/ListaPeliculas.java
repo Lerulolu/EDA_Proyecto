@@ -25,20 +25,19 @@ public class ListaPeliculas {
 		while(it.hasNext() && !encontrado) 
 		{
 			peli = it.next();
-			if(pTitulo.equals(peli.getNombrePelicula())) 
+			if(pTitulo == peli.getNombrePelicula())
 			{
 				encontrado = true;
 			}
 		}
-		if(encontrado) 
+		if(encontrado)
 		{
-			//System.out.println("EXISTE LA PELICULA!");
+			return peli;
 		}
-		else 
+		else
 		{
-			//System.out.println("NO EXISTE LA PELICULA!");
+			return null;
 		}
-		return peli;	
 	}
 			
 	public void incrementarCantidad(float pCantidad, String pPeli) throws FileNotFoundException 
@@ -50,6 +49,11 @@ public class ListaPeliculas {
 	public void insertarPelicula(Pelicula pPeli) 
 	{
 		listaPeliculas.add(pPeli);
+	}
+	
+	public void eliminarPelicula(Pelicula pPeli) 
+	{
+		listaPeliculas.remove(pPeli);
 	}
 	
 	public Pelicula obtenerPelicula(int i)
@@ -70,8 +74,5 @@ public class ListaPeliculas {
 	{
 		return listaPeliculas.size();
 	}
-	
-	
-	
 	
 }

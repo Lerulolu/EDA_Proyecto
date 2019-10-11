@@ -1,5 +1,7 @@
 package packModelo;
 
+import java.io.FileNotFoundException;
+
 public class Actor {
 	
 	private String nombre;
@@ -16,15 +18,27 @@ public class Actor {
 		return nombre;
 	}
 
-	public void insertarPeli(Pelicula pPeli) 
+	public void insertarPeli(Pelicula pPeli) throws FileNotFoundException 
 	{
-		lPelis.insertarPelicula(pPeli);
+		Pelicula p = lPelis.buscarPelicula(pPeli.getNombrePelicula());
+		if(p == null)
+		{
+			lPelis.insertarPelicula(pPeli);
+		}
+		else
+		{
+			System.out.println("ESA PELICULA YA EXISTE");
+		}
+	}
+	
+	public void eliminarPeli(Pelicula pPeli) 
+	{
+		lPelis.eliminarPelicula(pPeli);
 	}
 	
 	public void imprimirPelisActor() 
 	{
 		lPelis.imprimirPeliculas();
-		System.out.println(lPelis.getSize());
 	}
 	
 	public ListaPeliculas obtenerPeliculasDeActor() 
