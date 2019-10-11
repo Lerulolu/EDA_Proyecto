@@ -46,9 +46,18 @@ public class ListaActores {
 		}
 	}
 	
-	public void borrarActor(Actor pActor) 
+	public void borrarActor(String pActor) 
 	{
-		listaActores.remove(pActor);
+		Actor a = buscarActor(pActor);
+		
+		if(a != null)
+		{
+			listaActores.remove(a);
+		}
+		else
+		{
+			System.out.println("ESE ACTOR NO EXISTE");
+		}
 	}
 	
 	public void insertarActor(String pActor) 

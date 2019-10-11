@@ -95,7 +95,7 @@ public void cargarDatos() {
 				p.borrarActor(a.getNombreActor());
 			}
 			//Lo eliminamos de la coleccion de actores
-			listaActores.borrarActor(a);
+			listaActores.borrarActor(a.getNombreActor());
 		}
 		else
 		{

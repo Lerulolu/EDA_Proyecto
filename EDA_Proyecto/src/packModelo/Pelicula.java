@@ -42,15 +42,7 @@ public class Pelicula {
 	
 	public void borrarActor(String pActor) 
 	{
-		Actor a = lActores.buscarActor(pActor);
-		if(a != null)
-		{
-			lActores.borrarActor(a);
-		}
-		else
-		{
-			System.out.println("ESE ACTOR NO EXISTE");
-		}
+		lActores.borrarActor(pActor);
 		
 	}
 	
