@@ -33,30 +33,31 @@ public class main {
                 
                 
         		reloj=new Stopwatch();
- 
+
                 switch (opcion) {
                     case 1:
                         System.out.println("Buscar Pelicula");
                         ColeccionActores.getMiColeccionActores().cargarDatos();
+                		System.out.println("Tiempo utilizado para la carga de datos: "+reloj.elapsedTime());
+                		reloj=new Stopwatch();
                 		ColeccionPeliculas.getMiColeccionPeliculas().buscarPelicula("Eager to Die");
-                		System.out.println("Tiempo utilizado para la busqueda de la Pelicula: "+reloj.elapsedTime());
-                        break;
+                		System.out.println("Tiempo utilizado para la busqueda de datos: "+reloj.elapsedTime());
+                		break;
                     case 2:
                         System.out.println("Buscar Actor");
                         ColeccionActores.getMiColeccionActores().cargarDatos();
-                        Actor a = ColeccionActores.getMiColeccionActores().buscarActor("Devon, Tony");
-                        a.imprimirPelisActor();
+                		//ColeccionActores.getMiColeccionActores().imprimirActores();
+
+                        ColeccionActores.getMiColeccionActores().buscarActor("French, Steve");
                         System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
                         break;
                     case 3:
                         System.out.println("Obtener peliculas de un actor");
-                        ColeccionActores.getMiColeccionActores().cargarDatos();
                         ColeccionActores.getMiColeccionActores().obtenerPeliculasDeUnActor("Devon, Tony");
                         System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
                         break;
                     case 4:
                         System.out.println("Ordenar lista de actores");
-                        ColeccionActores.getMiColeccionActores().cargarDatos();
                         //ColeccionActores.getMiColeccionActores().ordenarActores();
                         break;
                     case 5:
