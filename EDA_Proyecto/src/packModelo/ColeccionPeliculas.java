@@ -85,7 +85,8 @@ public class ColeccionPeliculas {
 		}
 	}
 	
-public void generarLista() {
+
+	public void generarLista() throws IOException {
 		
 		FileWriter flwriter = null;
 		
@@ -94,22 +95,33 @@ public void generarLista() {
 			//crea el flujo para escribir en el archivo
 			flwriter = new FileWriter("src/packDatos/ListaActualizada.txt");
 			//crea un buffer o flujo intermedio antes de escribir directamente en el archivo
-			BufferedWriter bfwriter = new BufferedWriter(flwriter);
-			for(int i = 0; i < listaPeliculas.getSize(); i++) {
-				//escribe los datos en el archivo
-				Pelicula peli = listaPeliculas.obtenerPelicula(i);
-				ListaActores lA = obtenerActoresDeUnaPeli(peli.getNombrePelicula());
-				
-				bfwriter.write(peli.getNombrePelicula()+" ---> ");
-				for(int j = 0; j < lA.obtenerLongitudLista(); j++) {
-					String nombreActor = lA.obtenerNombreActor(j);
-					bfwriter.write(nombreActor);
-				}
-				bfwriter.newLine();
+			if(flwriter.equals(null)) {
+				System.out.println("NO EXISTE");
 			}
-			//cierra el buffer intermedio
-			bfwriter.close();
-			System.out.println("Archivo creado satisfactoriamente..");
+			else {
+				BufferedWriter bfwriter = new BufferedWriter(flwriter);
+				
+				for(int i = 0; i < listaPeliculas.getSize(); i++) {
+					System.out.println("VUELTA"+i);
+					//escribe los datos en el archivo
+					Pelicula peli = listaPeliculas.obtenerPelicula(i);
+					ListaActores lA = obtenerActoresDeUnaPeli(peli.getNombrePelicula());
+					
+					bfwriter.write(peli.getNombrePelicula()+" ---> ");
+					for(int j = 0; j < lA.obtenerLongitudLista(); j++) {
+						String nombreActor = lA.obtenerNombreActor(j);
+						bfwriter.write(nombreActor);
+						if(j != lA.obtenerLongitudLista()-1) {
+							bfwriter.write(" &&& ");
+						}
+					}
+					bfwriter.newLine();
+				}
+				//cierra el buffer intermedio
+				bfwriter.close();
+				System.out.println("Archivo creado satisfactoriamente..");
+			}
+			
  
 		} catch (IOException e) {
 			e.printStackTrace();

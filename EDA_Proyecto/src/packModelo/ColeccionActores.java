@@ -23,7 +23,8 @@ public class ColeccionActores {
 		return miColeccionActores;
 	}
 	
-public void cargarDatos() {
+
+	public void cargarDatos() {
 		
 		try {
 			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
@@ -58,6 +59,10 @@ public void cargarDatos() {
 		catch (IOException e) {
 			System.err.println(e.getLocalizedMessage());
 		}	
+	}
+	
+	public int obtenerPosicionDeUnActorEnLista(String pActor) {
+		return listaActores.obtenerPosicionActor(pActor);
 	}
 		
 	public ListaPeliculas obtenerPeliculasDeUnActor(String pActor) {
@@ -118,9 +123,22 @@ public void cargarDatos() {
 		}
 	}
 	
+
 	public void ordenarActoresAlfabeticamente() {
 		
-	
+		for (int i = 0; i < listaActores.obtenerLongitudLista(); i++) {
+			System.out.println("VUELTA"+i);
+			for (int j = 0; j < listaActores.obtenerLongitudLista(); j++) {
+			
+				if(listaActores.obtenerNombreActor(i).compareTo(listaActores.obtenerNombreActor(i+1)) > 0) {
+					String actor1 = listaActores.obtenerNombreActor(i);
+					String actor2 = listaActores.obtenerNombreActor(i+1);
+					listaActores.cambiarNombre(actor1, actor2);
+					
+				}
+			}
+		}
+		imprimirActores();
 	}
 
 }

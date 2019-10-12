@@ -1,16 +1,7 @@
 package packModelo;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 
 public class ListaActores {
@@ -100,49 +91,35 @@ public class ListaActores {
 	
 	public String obtenerNombreActor(int i) {
 			
-			String nombre = nombre = listaActores.get(i).getNombreActor();
+			String nombre = listaActores.get(i).getNombreActor();
 			return nombre;
 		}
 	
-	/*public void cargarActoresComas() {
-		
-		try {
-			
-			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
-			BufferedReader buffer = new BufferedReader(fichero);
-			String linea = buffer.readLine();
-			while(linea != null) {
-				String[] linea2 = linea.split(" ---> ");
-				String[] listaA = linea2[1].split(" &&& ");
-				int cont = 0;
-				for( int i = 0; i < listaA.length; i++) {
-					String[] separar = listaA[i].split(", ");
-					String nombre = separar[1];
-					String apellido = separar[0];
-					System.out.println("LINEA"+cont);
-					System.out.println("LISTA A "+listaA[i].toString());
-					System.out.println("NOMBRE "+nombre+"APELLIDO "+apellido);
-					cont++;
-				}
-				
-				//separarListaDeActores(listaA);
-				linea = buffer.readLine();		
-			}	
-			buffer.close();	
-		}
-		catch (IOException e) {
-			System.err.println(e.getLocalizedMessage());
-		}
-	}*/
+	public int obtenerPosicionActor(String actor) {
 
-	
+		int i = 0;
+		Boolean enc = false;
+		while(i < listaActores.size() || !enc) {
+			Actor act = listaActores.get(i);
+			if(act.getNombreActor().equals(actor)) {
+				enc = true;
+			}
+			else {
+				i = i +1;
+			}
+		}
+		return i;
 		
-
-	private Iterator<Actor> getIterador()
-	{
-		return listaActores.iterator();
 	}
 
+	public void cambiarNombre(String act1, String act2) {
+		
+		String aux;
+		aux = act1;
+		act1 = act2;
+		act2 = aux;
+	
+	}
 	
 	
 }

@@ -71,7 +71,18 @@ class ColeccionActoresTest {
 
 	@Test
 	void testOrdenarActoresAlfabeticamente() {
-		fail("Not yet implemented");
+		ColeccionActores.getMiColeccionActores().insertarActor("Devon, Tony");
+		ColeccionActores.getMiColeccionActores().insertarActor("O'Toole, Peter (I)");
+		
+		ColeccionActores.getMiColeccionActores().ordenarActoresAlfabeticamente();
+		
+		int pos = ColeccionActores.getMiColeccionActores().obtenerPosicionDeUnActorEnLista("Devon, Tony");
+		int pos1 = ColeccionActores.getMiColeccionActores().obtenerPosicionDeUnActorEnLista("O'Toole, Peter (I)");
+		
+		assertEquals(0, pos);
+		assertEquals(1, pos1);
+		
+		
 	}
 
 }

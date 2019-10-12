@@ -1,6 +1,7 @@
 package packPruebas;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ import packModelo.Stopwatch;
 
 public class main {
 	
-	public static void main(String args[]) throws InterruptedException, FileNotFoundException{
+	public static void main(String args[]) throws InterruptedException, IOException{
 		
 		
 		
@@ -21,10 +22,12 @@ public class main {
         Stopwatch reloj = null;
         while (!salir) {
  
-            System.out.println("1. Opcion 1");
-            System.out.println("2. Opcion 2");
-            System.out.println("3. Opcion 3");
-            System.out.println("4. Salir");
+            System.out.println("1. Opcion 1 - Buscar una Pelicula");
+            System.out.println("2. Opcion 2 - Buscar un Actor");
+            System.out.println("3. Opcion 3 - Obtener las peliculas de un actor");
+            System.out.println("4. Opcion 4 - Obtener los actores de una pelicula");
+            System.out.println("5. Opcion 5 - Ordenar lista de actores");
+            System.out.println("6. Opcion 6 - Generar fichero");
  
             try {
  
@@ -58,12 +61,23 @@ public class main {
                         System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
                         break;
                     case 4:
-                        System.out.println("Ordenar lista de actores");
-                        //ColeccionActores.getMiColeccionActores().ordenarActores();
+                        System.out.println("Obtener actores de una pelicula");
+                        ColeccionActores.getMiColeccionActores().cargarDatos();
+                        ColeccionPeliculas.getMiColeccionPeliculas().obtenerActoresDeUnaPeli("Eager to Die");
+                        System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
                         break;
                     case 5:
-                        salir = true;
+                        System.out.println("Ordenar lista de actores");
+                        ColeccionActores.getMiColeccionActores().cargarDatos();
+                        ColeccionActores.getMiColeccionActores().ordenarActoresAlfabeticamente();
+                        System.out.println("Tiempo utilizado para ordenar los actores: "+reloj.elapsedTime());
                         break;
+                    case 6:
+                    	System.out.println("Generar un fichero");
+                    	ColeccionActores.getMiColeccionActores().cargarDatos();
+                    	ColeccionPeliculas.getMiColeccionPeliculas().generarLista();
+                    	System.out.println("Tiempo utilizado para generar el fichero: "+reloj.elapsedTime());
+                    
                     default:
                         System.out.println("Solo números entre 1 y 4");
                 }

@@ -32,12 +32,10 @@ public class ListaPeliculas {
 		}
 		if(encontrado)
 		{
-			System.out.println("Pelicula Encontrada");
 			return peli;
 		}
 		else
 		{
-			System.out.println("Pelicula NO Encontrada");
 			return null;
 		}
 	}
