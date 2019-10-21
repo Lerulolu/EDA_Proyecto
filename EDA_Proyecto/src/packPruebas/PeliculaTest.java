@@ -1,11 +1,11 @@
 package packPruebas;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import java.io.FileNotFoundException;
 
-import packModelo.Actor;
-import packModelo.ListaActores;
+import org.junit.Test;
+
 import packModelo.Pelicula;
 
 class PeliculaTest {
