@@ -79,14 +79,17 @@ public class ListaActores {
 		return listaActores.get(i);
 	}
 		
-	public void ordenarLista() 
-	{
-		
-	}
-	
 	public int obtenerLongitudLista() 
 	{
 		return listaActores.size();
+	}
+	
+	public void imprimirActores()
+	{
+		for(int i = 0; i < listaActores.size(); i++)
+		{
+			System.out.println(listaActores.get(i).getNombreActor());
+		}
 	}
 	
 	public String obtenerNombreActor(int i) {

@@ -31,13 +31,10 @@ public class ColeccionActores {
 			BufferedReader buffer = new BufferedReader(fichero);
 			String linea = buffer.readLine();
 			Actor actor = null;
-			int posPeli = 0;
 			while(linea != null) {
 				String[] linea2 = linea.split(" ---> ");
 				//Añadimos la peli a la Coleccion de Peliculas
-				ColeccionPeliculas.getMiColeccionPeliculas().insertarPeliculaSinBuscar(linea2[0].toString(),0);
-				//Creamos el objeto pelicula
-				Pelicula peli = new Pelicula(linea2[0].toString(),0);
+				Pelicula p = ColeccionPeliculas.getMiColeccionPeliculas().insertarPeliculaSinBuscar(linea2[0].toString(),0);
 				String[] listaA = linea2[1].split(" &&& ");
 				for (int i = 0; i < listaA.length; i++) {
 					String nombre = listaA[i].toString();
@@ -45,14 +42,12 @@ public class ColeccionActores {
 					listaActores.insertarActorSinBuscar(nombre);
 					//Añadimos el actor, a la lista de actores de la peli
 					actor = listaActores.obtenerActorPorPosicion(i);
-					peli = ColeccionPeliculas.getMiColeccionPeliculas().obtenerPeliculaPorPosicion(posPeli);
-					peli.insertarActorSinBuscar(actor.getNombreActor());
-				}
+					p.insertarActorSinBuscar(actor.getNombreActor());
+				}	
 				//Añadimos la pelicula a lista de peliculas del actor
-				actor.insertarPeliSinBuscar(peli);
-				posPeli++;
-				linea = buffer.readLine();	
+				actor.insertarPeliSinBuscar(p);
 				
+				linea = buffer.readLine();				
 			}	
 			buffer.close();
 		}
@@ -98,12 +93,7 @@ public class ColeccionActores {
 			//Hay que borrarlo de las pelis en las que aparece --> Obtenemos la lista de peliculas de ese actor
 			ListaPeliculas pelisActor = a.obtenerPeliculasDeActor();
 			//Para cada peli de esa lista, borrar el actor
-			for (int i = 0; i < pelisActor.getSize(); i++)
-			{
-				Pelicula p = pelisActor.obtenerPelicula(i);
-				//Borramos el actor de la lista de actores de la peli
-				p.borrarActor(a.getNombreActor());
-			}
+			pelisActor.eliminarActorPeli(a);
 			//Lo eliminamos de la coleccion de actores
 			listaActores.borrarActor(a.getNombreActor());
 		}
@@ -111,8 +101,6 @@ public class ColeccionActores {
 		{
 			System.err.println("ESE ACTOR NO EXISTE");
 		}
-		
-		
 	}
 	
 	public void imprimirActores()

@@ -27,12 +27,9 @@ public class Pelicula {
 		return dineroRecaudado;
 	}
 	
-	public void imprimirActores() {
-		
-		for (int i = 0; i < lActores.obtenerLongitudLista(); i++) 
-		{
-			System.out.println(lActores.toString());
-		}
+	public void imprimirActores() 
+	{
+		lActores.imprimirActores();
 	}
 	
 	public void incrementarDinero (float pCantidad) 

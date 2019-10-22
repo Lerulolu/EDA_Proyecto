@@ -5,7 +5,7 @@ import packModelo.Persona;
 
 public class PruebaOrderedDoubleLinkedList {	
 		
-		public static void main(String[] args)  {
+/*		public static void main(String[] args)  {
 			
 			OrderedDoubleLinkedList<Integer> l = new OrderedDoubleLinkedList<Integer>();
 			l.add(1);
@@ -57,5 +57,6 @@ public class PruebaOrderedDoubleLinkedList {
 			
 			
 	}
+	*/
 	}
 

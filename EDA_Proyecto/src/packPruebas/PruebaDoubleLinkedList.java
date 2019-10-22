@@ -39,7 +39,7 @@ public class PruebaDoubleLinkedList {
 
 		System.out.println("Prueba RemoveFirst ...............");
 		l.removeFirst();
-		System.out.println(" Num elementos 7?: " + l.size());
+		System.out.println(" Num elementos 6?: " + l.size());
 		visualizarNodos(l);
 		
 		l.addToFront(8);
@@ -47,7 +47,7 @@ public class PruebaDoubleLinkedList {
 		
 		System.out.println("Prueba RemoveLast ...............");
 		l.removeLast();
-		System.out.println(" Num elementos 7?: " + l.size());
+		System.out.println(" Num elementos 6?: " + l.size());
 		visualizarNodos(l);
 		
 		l.addToRear(20);
@@ -98,4 +98,5 @@ public class PruebaDoubleLinkedList {
 		System.out.println("");
 
 	}
+	
 }

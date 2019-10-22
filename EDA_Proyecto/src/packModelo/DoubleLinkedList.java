@@ -36,9 +36,8 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		}
 		else
 		{
-			Node<T> aux = first.next;
-			aux.prev = first.prev;
-			first = aux;
+			first.next.prev = first.prev;
+			first = first.next;
 		}
 		count--;
 		return t;
@@ -191,7 +190,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		{
 			Node<T> actual = first.next;
 			boolean enc = false;
-
 			while (!actual.data.equals(elem))
 			{
 				if (actual.data.equals(last())) 

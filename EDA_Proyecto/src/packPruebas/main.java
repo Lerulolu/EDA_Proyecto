@@ -8,6 +8,7 @@ import java.util.Scanner;
 import packModelo.Actor;
 import packModelo.ColeccionActores;
 import packModelo.ColeccionPeliculas;
+import packModelo.Pelicula;
 import packModelo.Stopwatch;
 
 public class main {
@@ -19,7 +20,11 @@ public class main {
 		Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
-        Stopwatch reloj = null;
+        Stopwatch reloj = new Stopwatch();
+		System.out.println("Cargando datos...");
+        ColeccionActores.getMiColeccionActores().cargarDatos();
+		System.out.println("Tiempo utilizado para la carga de datos: "+reloj.elapsedTime());
+		System.out.println("");
         while (!salir) {
  
             System.out.println("1. Opcion 1 - Buscar una Pelicula");
@@ -40,46 +45,43 @@ public class main {
                 switch (opcion) {
                     case 1:
                         System.out.println("Buscar Pelicula");
-                        ColeccionActores.getMiColeccionActores().cargarDatos();
-                		System.out.println("Tiempo utilizado para la carga de datos: "+reloj.elapsedTime());
                 		reloj=new Stopwatch();
-                		ColeccionPeliculas.getMiColeccionPeliculas().buscarPelicula("Eager to Die");
+                		Pelicula p = ColeccionPeliculas.getMiColeccionPeliculas().buscarPelicula("Eager to Die");
                 		System.out.println("Tiempo utilizado para la busqueda de datos: "+reloj.elapsedTime());
+                		System.out.println("");
                 		break;
                     case 2:
                         System.out.println("Buscar Actor");
-                        ColeccionActores.getMiColeccionActores().cargarDatos();
-                		//ColeccionActores.getMiColeccionActores().imprimirActores();
-
+                        reloj=new Stopwatch();
                         ColeccionActores.getMiColeccionActores().buscarActor("French, Steve (VIII)");
                         System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
                         break;
                     case 3:
                         System.out.println("Obtener peliculas de un actor");
-                        ColeccionActores.getMiColeccionActores().cargarDatos();
+                        reloj=new Stopwatch();
                         ColeccionActores.getMiColeccionActores().obtenerPeliculasDeUnActor("Devon, Tony");
                         System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
                         break;
                     case 4:
                         System.out.println("Obtener actores de una pelicula");
-                        ColeccionActores.getMiColeccionActores().cargarDatos();
+                        reloj=new Stopwatch();
                         ColeccionPeliculas.getMiColeccionPeliculas().obtenerActoresDeUnaPeli("Eager to Die");
-                        System.out.println("Tiempo utilizado para la busqueda del Actor: "+reloj.elapsedTime());
+                        System.out.println("Tiempo utilizado para la busqueda de los actores de la pelicula: "+reloj.elapsedTime());
                         break;
                     case 5:
                         System.out.println("Ordenar lista de actores");
-                        ColeccionActores.getMiColeccionActores().cargarDatos();
+                        reloj=new Stopwatch();
                         ColeccionActores.getMiColeccionActores().ordenarActoresAlfabeticamente();
                         System.out.println("Tiempo utilizado para ordenar los actores: "+reloj.elapsedTime());
                         break;
                     case 6:
                     	System.out.println("Generar un fichero");
-                    	ColeccionActores.getMiColeccionActores().cargarDatos();
+                    	reloj=new Stopwatch();
                     	ColeccionPeliculas.getMiColeccionPeliculas().generarLista();
                     	System.out.println("Tiempo utilizado para generar el fichero: "+reloj.elapsedTime());
                     
                     default:
-                        System.out.println("Solo números entre 1 y 4");
+                        System.out.println("Solo números entre 1 y 6");
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Debes insertar un número");

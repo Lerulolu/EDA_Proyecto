@@ -30,18 +30,7 @@ public class ColeccionPeliculas {
 		
 	public ListaActores obtenerActoresDeUnaPeli(String pPeli) throws FileNotFoundException
 	{
-		Pelicula p = buscarPelicula(pPeli);
-		ListaActores listaActores = null;
-		if(p != null)
-		{
-			listaActores = p.obtenerActoresDeUnaPelicula();
-		}
-		else
-		{
-			System.err.println("ESA PELÍCULA NO EXISTE");
-		}
-		
-		return listaActores;
+		return listaPeliculas.obtenerActoresDeUnaPeli(pPeli);
 	}
 	
 	public Pelicula buscarPelicula(String pTitulo) throws FileNotFoundException 
@@ -49,83 +38,31 @@ public class ColeccionPeliculas {
 		return listaPeliculas.buscarPelicula(pTitulo);
 	}
 	
-	public Pelicula obtenerPeliculaPorPosicion(int i)
-	{
-		return listaPeliculas.obtenerPelicula(i);
-	}
 	public void insertarPelicula(String pPeli, float pDineroRecaudado) throws FileNotFoundException
 	{
-		Pelicula p = listaPeliculas.buscarPelicula(pPeli);
-		if(p == null)
-		{
-			listaPeliculas.insertarPelicula(pPeli,pDineroRecaudado);
-		}
-		else
-		{
-			System.err.println("ESA PELÍCULA YA EXISTE");
-		}
+		listaPeliculas.insertarPelicula(pPeli, pDineroRecaudado);
 	}
 	
-	public void insertarPeliculaSinBuscar(String pPeli, float pDineroRecaudado) throws FileNotFoundException
+	public Pelicula insertarPeliculaSinBuscar(String pPeli, float pDineroRecaudado) throws FileNotFoundException
 	{
 		Pelicula p = new Pelicula(pPeli, pDineroRecaudado);
 		listaPeliculas.insertarPeliSinBuscar(p);
+		return p;
 	}
 	
 	public void incrementarDineroRecaudado(String pPeli, float pCantidad) throws FileNotFoundException
 	{
-		Pelicula p = buscarPelicula(pPeli);
-		if(p != null)
-		{
-			p.incrementarDinero(pCantidad);
-		}
-		else
-		{
-			System.err.println("ESA PELÍCULA NO EXISTE");
-		}
+		listaPeliculas.incrementarCantidad(pCantidad, pPeli);
 	}
 	
 
-	public void generarLista() throws IOException {
-		
-		FileWriter flwriter = null;
-		
-		try {
-			
-			//crea el flujo para escribir en el archivo
-			flwriter = new FileWriter("src/packDatos/ListaActualizada.txt");
-			//crea un buffer o flujo intermedio antes de escribir directamente en el archivo
-			if(flwriter.equals(null)) {
-				System.out.println("NO EXISTE");
-			}
-			else {
-				BufferedWriter bfwriter = new BufferedWriter(flwriter);
-				
-				for(int i = 0; i < listaPeliculas.getSize(); i++) {
-					System.out.println("VUELTA"+i);
-					//escribe los datos en el archivo
-					Pelicula peli = listaPeliculas.obtenerPelicula(i);
-					ListaActores lA = obtenerActoresDeUnaPeli(peli.getNombrePelicula());
-					
-					bfwriter.write(peli.getNombrePelicula()+" ---> ");
-					for(int j = 0; j < lA.obtenerLongitudLista(); j++) {
-						String nombreActor = lA.obtenerNombreActor(j);
-						bfwriter.write(nombreActor);
-						if(j != lA.obtenerLongitudLista()-1) {
-							bfwriter.write(" &&& ");
-						}
-					}
-					bfwriter.newLine();
-				}
-				//cierra el buffer intermedio
-				bfwriter.close();
-				System.out.println("Archivo creado satisfactoriamente..");
-			}
-			
- 
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
+	public void generarLista() throws IOException 
+	{
+		listaPeliculas.generarLista();
 	}
 
+	public int getSize()
+	{
+		return listaPeliculas.getSize();
+	}
 }

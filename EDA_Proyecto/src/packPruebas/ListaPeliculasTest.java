@@ -65,18 +65,6 @@ class ListaPeliculasTest {
 	}
 
 	@Test
-	void testObtenerPelicula() throws FileNotFoundException {
-		assertEquals(l.getSize(),0);
-
-		l.insertarPelicula("Los Juegos del Hambre",0);	
-		
-		assertTrue(l.obtenerPelicula(0).getNombrePelicula() == "Los Juegos del Hambre" );
-		assertNull(l.obtenerPelicula(1));
-
-	}
-
-	
-	@Test
 	void testGetSize() throws FileNotFoundException {
 		assertEquals(l.getSize(),0);
 

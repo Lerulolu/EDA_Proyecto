@@ -37,10 +37,9 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 		}
 		else
 		{
-			Node<T> last = first.prev;
 			nuevo.next = first;
-			nuevo.prev = last;
-			last.next = nuevo;
+			nuevo.prev = first.prev;
+			first.prev.next = nuevo;
 			first.prev = nuevo;
 
 		}

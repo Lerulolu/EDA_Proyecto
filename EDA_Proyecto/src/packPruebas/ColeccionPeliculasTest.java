@@ -31,31 +31,23 @@ class ColeccionPeliculasTest {
 	}
 
 	@Test
-	void testObtenerPeliculaPorPosicion() throws FileNotFoundException {
-		assertNull(ColeccionPeliculas.getMiColeccionPeliculas().obtenerPeliculaPorPosicion(0));
-		
-		ColeccionPeliculas.getMiColeccionPeliculas().insertarPelicula("Eager to Die", 0);
-		
-		assertNotNull(ColeccionPeliculas.getMiColeccionPeliculas().obtenerPeliculaPorPosicion(0));
-		assertTrue("Eager to Die" == ColeccionPeliculas.getMiColeccionPeliculas().obtenerPeliculaPorPosicion(0).getNombrePelicula());
-	}
-
-	@Test
 	void testInsertarPelicula() throws FileNotFoundException {
-		assertNull(ColeccionPeliculas.getMiColeccionPeliculas().obtenerPeliculaPorPosicion(0));
+		assertTrue(ColeccionPeliculas.getMiColeccionPeliculas().getSize() == 0);
 		
 		ColeccionPeliculas.getMiColeccionPeliculas().insertarPelicula("Eager to Die", 0);
 		
 		assertNotNull(ColeccionPeliculas.getMiColeccionPeliculas().buscarPelicula("Eager to Die"));
-		
+		assertTrue(ColeccionPeliculas.getMiColeccionPeliculas().getSize() == 1);
+
 		//Pelicula ya existe
 		ColeccionPeliculas.getMiColeccionPeliculas().insertarPelicula("Eager to Die", 0);
-	
+		assertTrue(ColeccionPeliculas.getMiColeccionPeliculas().getSize() == 1);
+
 	}
 
 	@Test
 	void testInsertarPeliculaSinBuscar() throws FileNotFoundException {
-		assertNull(ColeccionPeliculas.getMiColeccionPeliculas().obtenerPeliculaPorPosicion(0));
+		assertTrue(ColeccionPeliculas.getMiColeccionPeliculas().getSize() == 0);
 		
 		ColeccionPeliculas.getMiColeccionPeliculas().insertarPeliculaSinBuscar("Eager to Die", 0);
 		
@@ -64,7 +56,8 @@ class ColeccionPeliculasTest {
 		ColeccionPeliculas.getMiColeccionPeliculas().insertarPeliculaSinBuscar("Eager to Die", 0);
 		
 		//Insertamos dos veces la misma pelicula
-		assertNotNull(ColeccionPeliculas.getMiColeccionPeliculas().obtenerPeliculaPorPosicion(1));
+		assertTrue(ColeccionPeliculas.getMiColeccionPeliculas().getSize() == 1);
+
 	}
 
 	@Test
