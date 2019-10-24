@@ -37,6 +37,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		else
 		{
 			first.next.prev = first.prev;
+			first.prev.next = first.next;
 			first = first.next;
 		}
 		count--;

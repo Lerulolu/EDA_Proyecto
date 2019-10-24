@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Particle;
+
 public class ColeccionActores {
 	
 	private static ColeccionActores miColeccionActores;
@@ -110,6 +112,7 @@ public class ColeccionActores {
 			System.out.println(listaActores.obtenerNombreActor(i));
 		}
 	}
+	
 	
 
 	public void ordenarActoresAlfabeticamente() {
