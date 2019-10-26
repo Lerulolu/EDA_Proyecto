@@ -72,7 +72,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	//Elimina un elemento concreto de la lista
 	// COMPLETAR EL CODIGO Y CALCULAR EL COSTE
 		
-		Node<T> actual = first.next;
+		Node<T> actual = null;
 		T t = null;
 		
 		if(this.isEmpty())
@@ -89,6 +89,8 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		}
 		else
 		{
+			actual = first.next;
+			
 			while(!actual.data.equals(elem) && !actual.data.equals(first)) //Al ser una lista circular, termina cuando se llega de nuevo al primero
 			{
 				actual = actual.next;
