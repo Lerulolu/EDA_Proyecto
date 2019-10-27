@@ -1,6 +1,7 @@
 package packModelo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 
@@ -122,6 +123,24 @@ public class ListaActores {
 		act1 = act2;
 		act2 = aux;
 	
+	}
+	
+
+	public void ordenarListaActores() {
+		
+		Iterator<Actor> it = listaActores.iterator();
+		
+		if(listaActores == null){
+			System.out.println("no hay webs que ordenar");
+		}else{
+			ArrayList<String> listaAct = new ArrayList<String>();
+			while (it.hasNext()) {
+				Actor act = it.next();
+				listaAct.add(act.getNombreActor());
+			}
+		Collections.sort(listaAct);
+		listaAct.stream().forEach(unaUrl -> System.out.println(unaUrl));
+		}
 	}
 	
 	

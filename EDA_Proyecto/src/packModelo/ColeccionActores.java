@@ -107,29 +107,32 @@ public class ColeccionActores {
 	
 	public void imprimirActores()
 	{
+		
+		System.out.println("EMPIEZA");
 		for (int i = 0; i < listaActores.obtenerLongitudLista(); i++)
 		{
 			System.out.println(listaActores.obtenerNombreActor(i));
 		}
+		System.out.println("ACABADO!");
 	}
 	
 	
 
 	public void ordenarActoresAlfabeticamente() {
 		
-		for (int i = 0; i < listaActores.obtenerLongitudLista(); i++) {
+		listaActores.ordenarListaActores();
+		/*for (int i = 0; i < listaActores.obtenerLongitudLista(); i++) {
 			System.out.println("VUELTA"+i);
 			for (int j = 0; j < listaActores.obtenerLongitudLista(); j++) {
 			
-				if(listaActores.obtenerNombreActor(i).compareTo(listaActores.obtenerNombreActor(i+1)) > 0) {
+				if(listaActores.obtenerNombreActor(i).4mpareTo(listaActores.obtenerNombreActor(i+1)) > 0) {
 					String actor1 = listaActores.obtenerNombreActor(i);
 					String actor2 = listaActores.obtenerNombreActor(i+1);
 					listaActores.cambiarNombre(actor1, actor2);
 					
 				}
 			}
-		}
-		imprimirActores();
+		}*/
 	}
 
 }
