@@ -48,11 +48,15 @@ public class Pelicula {
 		return lActores;
 	}
 	
-	public void insertarActor(String pActor, Integer pClave) 
+	public Actor insertarActorPelicula(Actor pActor, Integer pClave) 
 	{
-		
-		lActores.insertarActor(pActor, pClave);
-		
+	
+		Actor a = lActores.insertarActor(pActor, pClave);
+		return a;
 	}
 		
+	public Integer getNumActores()
+	{
+		return lActores.obtenerLongitudLista();
+	}
 }

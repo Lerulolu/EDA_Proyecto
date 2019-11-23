@@ -18,12 +18,9 @@ public class Actor {
 		return nombre;
 	}
 
-	public Pelicula insertarPeli(String pPeli, Integer pClave) throws FileNotFoundException 
+	public Pelicula insertarPeliActor(Pelicula pPeli, Integer pClave) throws FileNotFoundException 
 	{
-		Pelicula p = new Pelicula(pPeli,0);
-		Pelicula res = lPelis.insertarPelicula(p, pClave);
-		return res;
-		
+		return lPelis.insertarPelicula(pPeli, pClave);	
 	}
 	
 	public void eliminarPeli(String pPeli) throws FileNotFoundException 
@@ -39,8 +36,13 @@ public class Actor {
 	public ListaPeliculas obtenerPeliculasDeActor() 
 	{
 		//Para hacer las pruebas
-		lPelis.imprimirPeliculas();
+		//lPelis.imprimirPeliculas();
 		return lPelis;
-	}		
+	}	
+	
+	public Integer getNumPelis()
+	{
+		return lPelis.getSize();
+	}
 	
 }

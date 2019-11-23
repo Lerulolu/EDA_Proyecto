@@ -18,15 +18,15 @@ public class ListaPeliculas {
 	
 	public ListaPeliculas() 
 	{
-		//listaPeliculas = new ArrayList<Pelicula>();
 		listaPeliculas = new HashMap<Integer, Pelicula>();
 	}
 			
 	public Entry<Integer,Pelicula> buscarPelicula(String pTitulo) throws FileNotFoundException  
 	{	
-		Iterator<Entry<Integer,Pelicula>> it = listaPeliculas.entrySet().iterator();
+		Iterator<Entry<Integer,Pelicula>> it = this.listaPeliculas.entrySet().iterator();
 		Boolean enc = false;
 		Entry<Integer,Pelicula> peli = null;
+		
 		while(it.hasNext() && !enc) 
 		{
 			peli = it.next();
@@ -67,28 +67,28 @@ public class ListaPeliculas {
 		if(peli == null)
 		{
 			p = new Pelicula(pPeli.getNombrePelicula(), pPeli.getDineroRecaudado());
-			listaPeliculas.put(pClave, p);
+			this.listaPeliculas.put(pClave, p);
 			return p;
 		}
 		else
 		{
+			//Devolvemos la Pelicula que ya existía en la lista
+			//System.out.println("YA EXISTE ESA PELI");
 			return peli.getValue();
 		}
 		
 	}
 	
-	public Pelicula eliminarPelicula(String pPeli) throws FileNotFoundException 
+	public void eliminarPelicula(String pPeli) throws FileNotFoundException 
 	{
 		Entry<Integer,Pelicula> p = buscarPelicula(pPeli);
 		if(p != null)
 		{
-			listaPeliculas.remove(p.getKey());
-			return p.getValue();
+			Pelicula pe = listaPeliculas.remove(p.getKey());
 		}
 		else
 		{
 			System.out.println("ESA PELICULA NO EXISTE");
-			return null;
 		}
 	}
 		
@@ -150,24 +150,7 @@ public class ListaPeliculas {
 				e.printStackTrace();
 			} 
 		}
-	
-	public ListaActores obtenerActoresDeUnaPeli(String pPeli) throws FileNotFoundException
-	{
-		Entry<Integer,Pelicula> p = buscarPelicula(pPeli);
-		ListaActores listaActores = null;
-		if(p.getValue() != null)
-		{
-			listaActores = p.getValue().obtenerActoresDeUnaPelicula();
-			p.getValue().imprimirActores();
-		}
-		else
-		{
-			System.err.println("ESA PELÍCULA NO EXISTE");
-		}
 		
-		return listaActores;
-	}
-	
 	public void incrementarDineroRecaudado(String pPeli, float pCantidad) throws FileNotFoundException
 	{
 		Entry<Integer,Pelicula> p = buscarPelicula(pPeli);
@@ -198,6 +181,26 @@ public class ListaPeliculas {
 	{
 		String nombre = listaPeliculas.get(i).getNombrePelicula();
 		return nombre;
+	}
+	
+	public Pelicula obtenerPeli(int i)
+	{
+		return listaPeliculas.get(i);
+	}
+	
+	public ListaActores obtenerActoresDeUnaPeli(String pPeli) throws FileNotFoundException
+	{
+		Entry<Integer,Pelicula> p = buscarPelicula(pPeli);
+		ListaActores listaActores = null;
+		if(p.getValue().getNombrePelicula().equalsIgnoreCase(pPeli))
+		{
+			listaActores = p.getValue().obtenerActoresDeUnaPelicula();
+		}
+		else
+		{
+			System.err.println("ESA PELÍCULA NO EXISTE");
+		}
+		return listaActores;
 	}
 
 }

@@ -39,17 +39,16 @@ public class ColeccionPeliculas {
 		return listaPeliculas.buscarPelicula(pTitulo);
 	}
 	
-	public Pelicula insertarPelicula(String pPeli, float pDineroRecaudado, Integer pClave) throws FileNotFoundException
+	public Pelicula insertarPeliculaColeccion(String pPeli, float pDineroRecaudado, Integer pClave) throws FileNotFoundException
 	{
 		Pelicula p = new Pelicula(pPeli, pDineroRecaudado);
-		listaPeliculas.insertarPelicula(p, pClave);
+		p = listaPeliculas.insertarPelicula(p, pClave);
 		return p;
 	}
 	
-	public Pelicula borrarPelicula(String pPeli) throws FileNotFoundException
+	public void borrarPelicula(String pPeli) throws FileNotFoundException
 	{
-		Pelicula p = listaPeliculas.eliminarPelicula(pPeli);
-		return p;
+		listaPeliculas.eliminarPelicula(pPeli);
 	}
 	
 	public boolean incrementarDineroRecaudado(String pPeli, float pCantidad) throws FileNotFoundException

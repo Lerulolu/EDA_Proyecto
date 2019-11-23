@@ -25,31 +25,37 @@ public class ColeccionActores {
 		return miColeccionActores;
 	}
 	
+	public ListaActores getListaActores()
+	{
+		return 	listaActores;
+	}
 
 	public void cargarDatos() {
 		
 		try {
-			FileReader fichero = new FileReader(new File("src/packDatos/FilmsActors20162017.txt"));
+			FileReader fichero = new FileReader(new File("src/packDatos/ficheroPruebas.txt"));
 			BufferedReader buffer = new BufferedReader(fichero);
 			String linea = buffer.readLine();
-			int j = 0;
 			Actor a = null;
-			while(linea != null) {
+			while(linea != null) {		
 				String[] linea2 = linea.split(" ---> ");
+				//Para pruebas
+				System.out.println(ColeccionPeliculas.getMiColeccionPeliculas().getSize());
+				
 				//Añadimos la peli a la Coleccion de Peliculas
-				Pelicula p = ColeccionPeliculas.getMiColeccionPeliculas().insertarPelicula(linea2[0],0, j);
+				Pelicula p = ColeccionPeliculas.getMiColeccionPeliculas().insertarPeliculaColeccion(linea2[0], 0, ColeccionPeliculas.getMiColeccionPeliculas().getSize());
 				String[] listaA = linea2[1].split(" &&& ");
-				System.out.println(j);
-				for (int i = 0; i < listaA.length; i++) {
+				
+				for (int i = 0; i < listaA.length; i++) 
+				{
 					String nombre = listaA[i];
 					//Insertamos el actor en el catalogo completo de actores
-					a = listaActores.insertarActor(nombre,listaActores.obtenerLongitudLista()-1);
+					a = this.insertarActorColeccion(nombre,this.getSize());
+					//Añadimos la pelicula a lista de peliculas del actor
+					a.insertarPeliActor(p,a.getNumPelis());
 					//Añadimos el actor, a la lista de actores de la peli
-					p.insertarActor(a.getNombreActor(),i);				
+					p.insertarActorPelicula(a,p.getNumActores());
 				}	
-				//Añadimos la pelicula a lista de peliculas del actor una única vez
-				a.insertarPeli(p.getNombrePelicula(),j);
-				j++;
 				linea = buffer.readLine();				
 			}	
 			buffer.close();
@@ -60,11 +66,11 @@ public class ColeccionActores {
 	}
 		
 	public ListaPeliculas obtenerPeliculasDeUnActor(String pActor) {
-		Entry<Integer,Actor> a = buscarActor(pActor);
+		Actor a = buscarActor(pActor);
 		ListaPeliculas listaPelis = null;
 		if(a != null)
 		{
-			listaPelis = a.getValue().obtenerPeliculasDeActor();
+			listaPelis = a.obtenerPeliculasDeActor();
 		}
 		else
 		{
@@ -73,33 +79,21 @@ public class ColeccionActores {
 		return listaPelis;
 	}
 	
-	public Entry<Integer,Actor> buscarActor(String pNombre) 
+	public Actor buscarActor(String pNombre) 
 	{
 		return listaActores.buscarActor(pNombre);
 	}
 	
 	
-	public Actor insertarActor(String pActor, Integer num)
+	public Actor insertarActorColeccion(String pActor, Integer pClave)
 	{
-		return listaActores.insertarActor(pActor, num);
+		Actor a = new Actor(pActor);
+		return listaActores.insertarActor(a, pClave);
 	}
 	
 	public void eliminarActorColeccion(String pActor, Integer pClave)
 	{
-		Entry<Integer,Actor> a = listaActores.buscarActor(pActor);
-		if(a != null)
-		{
-			//Hay que borrarlo de las pelis en las que aparece --> Obtenemos la lista de peliculas de ese actor
-			ListaPeliculas pelisActor = a.getValue().obtenerPeliculasDeActor();
-			//Para cada peli de esa lista, borrar el actor
-			pelisActor.eliminarActorPeli(a.getValue(), pClave);
-			//Lo eliminamos de la coleccion de actores
-			this.listaActores.borrarActor(a.getValue().getNombreActor(),a.getKey());
-		}
-		else
-		{
-			System.err.println("ESE ACTOR NO EXISTE");
-		}
+		this.listaActores.eliminarActorColeccion(pActor, pClave);
 	}
 	
 	public void imprimirActores()
@@ -112,12 +106,15 @@ public class ColeccionActores {
 		}
 		System.out.println("ACABADO!");
 	}
-	
-	
 
 	public void ordenarActoresAlfabeticamente() 
 	{	
 		listaActores.ordenarListaActores();
 	}
-
+	
+	public int getSize()
+	{
+		return listaActores.obtenerLongitudLista();
+	}
+	
 }

@@ -17,22 +17,22 @@ public class ListaActores {
 	}
 	
 			
-	public Entry<Integer,Actor> buscarActor(String pNombre) 
+	public Actor buscarActor(String pNombre) 
 	{	
 		Iterator<Entry<Integer,Actor>> it = listaActores.entrySet().iterator();
+		Boolean enc = false;
 		Entry<Integer,Actor> actor = null;
-		boolean enc = false;
-		while (it.hasNext() && !enc) 
+		while(it.hasNext() && !enc) 
 		{
 			actor = it.next();
-			if(actor.getValue().getNombreActor().equalsIgnoreCase(pNombre))
+			if(pNombre.equalsIgnoreCase(actor.getValue().getNombreActor()))
 			{
 				enc = true;
 			}
 		}
 		if(enc)
 		{
-			return actor;
+			return actor.getValue();
 		}
 		else
 		{
@@ -42,7 +42,7 @@ public class ListaActores {
 	
 	public void borrarActor(String pNombre, Integer pClave) 
 	{
-		Entry<Integer,Actor> a = buscarActor(pNombre);
+		Actor a = buscarActor(pNombre);
 		if(a != null)
 		{
 			listaActores.remove(pClave);
@@ -53,20 +53,56 @@ public class ListaActores {
 		}
 	}
 	
-	public Actor insertarActor(String pActor, Integer pClave) 
+	
+	public Actor insertarActor(Actor pActor, Integer pClave) 
 	{	
-		Entry<Integer,Actor> a = buscarActor(pActor);
+		Actor a = buscarActor(pActor.getNombreActor());
 		Actor actor = null;
 		if(a == null)
 		{
-			actor = new Actor(pActor);
-			listaActores.put(pClave, actor);
+			actor = new Actor(pActor.getNombreActor());
+			this.listaActores.put(pClave, actor);
 			return actor;
 		}
 		else
 		{
-			return a.getValue();
+			//Devolvemos el actor que ya existia en la lista
+			//System.out.println("YA EXISTE ESE ACTOR");
+			return a;
 		}
+	}
+	
+	public void eliminarActorColeccion(String pActor, Integer pClave)
+	{
+		Actor a = this.buscarActor(pActor);
+		if(a != null)
+		{
+			//Hay que borrarlo de las pelis en las que aparece --> Obtenemos la lista de peliculas de ese actor
+			ListaPeliculas pelisActor = a.obtenerPeliculasDeActor();
+			//Para cada peli de esa lista, borrar el actor
+			pelisActor.eliminarActorPeli(a, pClave);
+			//Lo eliminamos de la coleccion de actores
+			this.borrarActor(a.getNombreActor(), pClave);
+		}
+		else
+		{
+			System.err.println("ESE ACTOR NO EXISTE");
+		}
+	}
+	
+	public ListaPeliculas obtenerPeliculasDeUnActor(String pActor) 
+	{
+		Actor a = buscarActor(pActor);
+		ListaPeliculas listaPelis = null;
+		if(a.getNombreActor().equalsIgnoreCase(pActor))
+		{
+			listaPelis = a.obtenerPeliculasDeActor();
+		}
+		else
+		{
+			System.err.println("ESE ACTOR NO EXISTE");
+		}
+		return listaPelis;
 	}
 				
 	public int obtenerLongitudLista() 
@@ -118,6 +154,6 @@ public class ListaActores {
 		listaAct.stream().forEach(unaUrl -> System.out.println(unaUrl));
 		}
 	}
-	
+		
 	
 }

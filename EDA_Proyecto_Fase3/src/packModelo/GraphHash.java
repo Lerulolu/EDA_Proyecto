@@ -7,14 +7,25 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map.Entry;
 
+import javax.swing.plaf.synth.SynthSpinnerUI;
+
 import java.util.Queue;
 
 public class GraphHash {
 
+	private static GraphHash miGrafo;
+	
+	public static GraphHash getMiGraphHas() {
+		if(miGrafo == null) {
+			miGrafo = new GraphHash();
+		}
+		return miGrafo;
+	}
+	
 	HashMap<String, ArrayList<String>> g;
-	String[] keys;
+	ArrayList<String> keys;
 	ArrayList<String>[] adjList;
-	int cont = 0;
+	int cont = 0; //contador de actores no repetidos
 	String actor = null;
 	Actor a = null;
 	ListaPeliculas pelisActor = null;
@@ -26,49 +37,73 @@ public class GraphHash {
 		// Paso 1: llenar el hashmap
 		// COMPLETAR CODIGO
 		g = new HashMap<String, ArrayList<String>>();
+		
 		for (int i = 0; i < lActores.obtenerLongitudLista(); i++)
 		{
-			actor = lActores.obtenerNombreActor(i);
+			a = lActores.obtenerActor(i);
+			actor = a.getNombreActor();
+			ArrayList<String> lAP;
+			
 			if(!g.containsKey(actor))
 			{
-				a = lActores.obtenerActor(i);
 				pelisActor = a.obtenerPeliculasDeActor();
-				ArrayList<String> l = new ArrayList<String>();
+				
+				lAP = new ArrayList<String>();
+				ArrayList<String> lPA;
+				
 				for(int j = 0; j < pelisActor.getSize(); j++)
 				{
 					String p = pelisActor.obtenerNombrePeli(j);
-					l.add(p);
+					if(!g.containsKey(p))
+					{
+						lPA = new ArrayList<String>();
+						lAP.add(p);
+						lPA.add(actor);
+						g.put(p, lPA);
+					}
+					else
+					{
+						lAP.add(p);
+						lPA = g.get(p);
+						lPA.add(actor);
+						g.put(p, lPA);
+						
+					}
 				}
-				g.put(actor, l);
+				g.put(actor, lAP);
 				cont++;
 			}
 		}
 		
 		//Paso 2: Llenar keys
-		int i = 0;
-		keys = new String[cont];
-		for(String s : g.keySet())
-		{
-			keys[i] = s;
-			i++;
-		}
-
+		keys = new ArrayList<String>(g.keySet());
+		
 		//Paso 3: Llenar adjList
-		adjList = new ArrayList[cont];
+		adjList = new ArrayList[g.size()];
+
 		for(int j = 0; j < adjList.length; j++)
 		{
 			adjList[j] = new ArrayList<String>();
 		}
-		String iA; //Indice de los actores
-		String iP; //Indice de las pelis
+		String actor; 
+		Integer iA = 0; //Indice de los actores
+		String peli; 
+		Integer iP = 0; //Indice de las pelis
+		
 		for(int k = 0; k < lActores.obtenerLongitudLista(); k++)
 		{
-			iA = a.getNombreActor();
-			for(int l = 0; l < a.obtenerPeliculasDeActor().getSize(); l++)
+			actor = lActores.obtenerNombreActor(k);
+
+			for(int l = 0; l < g.get(actor).size(); l++)
 			{
-				iP = g.get(l).get(l);
-				adjList[k].add(iP);
-				adjList[l].add(iA);
+				peli = g.get(actor).get(l);
+						
+				iA = keys.indexOf(actor);
+				iP = keys.indexOf(peli);
+				
+				adjList[iA].add(peli);
+				adjList[iP].add(actor);
+								
 			}
 			
 		}
@@ -86,22 +121,58 @@ public class GraphHash {
 		}
 	}
 
-	public boolean estanConectadas(String a1, String a2) {
+	public boolean estanConectados(String a1, String a2) {
 		
-		Queue<String> porExaminar = new LinkedList<String>();
+		Queue<Integer> porExaminar = new LinkedList<Integer>();
 		boolean enc = false;
-		String pos1 = a1;
-		String pos2 = a2;
+		
+		Integer pos1 = keys.indexOf(a1);
+		Integer pos2 = keys.indexOf(a2);
+		
 		boolean[] examinados = new boolean[g.size()];
 		porExaminar.add(pos1);
 		HashMap<String,String> camino = new HashMap<String, String>();
 		while(!porExaminar.isEmpty() && !enc)
 		{
-
+			if(adjList[pos1].contains(a2))
+			{
+				enc = true;
+			}
+			else
+			{
+				examinados[pos1] = true;
+				pos1 = porExaminar.remove();
+				Iterator<String> itr = adjList[pos1].iterator();
+				String actual;
+				Integer posActual;
+				while(itr.hasNext())
+				{
+					actual = itr.next();
+					posActual = keys.indexOf(actual);
+					if(!examinados[posActual] && !porExaminar.contains(actual))
+					{
+						porExaminar.add(posActual);
+						camino.put(actual, keys.get(pos1));
+					}
+				}
+			}
 		}
+		System.out.println();
+		if(enc == true)
+		{
+			System.out.println("Están conectados");
+			System.out.println();
+			System.out.println(imprimirConexion(a1, a2, camino).toString());
+		}
+		else
+		{
+			System.out.println("No están conectados");
+		}
+		System.out.println();
+		System.out.println(enc);
+		System.out.println();
 		
-		return enc;
-		
+		return enc;	
 
 	}
 
